@@ -24,7 +24,7 @@ let priceHistory = [];
 
 setInterval(function () {
   seconds++;
-  countDown.innerHTML = `Last update = ${seconds} seconds ago`;
+  countDown.innerHTML = `Last updated = ${seconds} seconds ago`;
 }, 1000);
 
 socket.onmessage = function (event) {
@@ -52,7 +52,7 @@ socket.onmessage = function (event) {
 
     // calculate the difference between the last two elements in the array
 
-    let difference = price - priceHistory[priceHistory.length - 2].toFixed(2);
+    let difference = price - priceHistory[priceHistory.length - 2];
 
     // if the difference is positive, then add a + sign to the difference, if negative then add a - sign
 
