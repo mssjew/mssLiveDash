@@ -5,3 +5,11 @@
 .green {
     color: green;
 }
+
+p {
+    font-size: 2rem;
+}
+
+li {
+    font-size: 1.8rem;
+}
