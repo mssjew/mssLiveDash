@@ -1,5 +1,3 @@
-
-
 const ticker = document.getElementById("data");
 
 let countDown = document.getElementById("countDown");
@@ -8,6 +6,12 @@ let priceList = document.getElementById("priceList");
 
 let bidPriceP = document.getElementById("bidPrice");
 let askPriceP = document.getElementById("askPrice");
+
+let lowestDay = document.getElementById("lowestDay");
+let highestDay = document.getElementById("highestDay");
+
+let todaysDateP = document.getElementById("todaysDate");
+let currentTimeP = document.getElementById("currentTime");
 
 let oneGramTicker = document.getElementById("oneGramTicker");
 let twoHalfGramTicker = document.getElementById("twoHalfGramTicker");
@@ -22,6 +26,23 @@ let fiveTolaTicker = document.getElementById("fiveTolaTicker");
 let hundredGramTicker = document.getElementById("hundredGramTicker");
 let ttPriceTicker = document.getElementById("ttPriceTicker");
 
+
+// get todays date and insert into html
+let todaysDate = new Date();
+let todaysDateFormatted = todaysDate.toDateString();
+todaysDateP.innerText = todaysDateFormatted;
+
+
+
+// keep updating the current time
+setInterval(function () {
+    let currentTime = new Date();
+    let currentTimeFormatted = currentTime.toLocaleTimeString();
+    currentTimeP.innerText = currentTimeFormatted;
+    }, 1000);
+
+
+// "https://marketdata.tradermade.com/api/v1/historical?currency=XAUUSD&date=2023-01-22&api_key=CzyOm57xTxByAcyzwJ-1"
 
 // start a stopwatch and insert the seconds into the html
 
@@ -62,8 +83,6 @@ socket.onmessage = function incoming(data) {
     }
   }
 
-
-
   let askPrice = data.data.split(",")[3];
   askPriceFormatted = askPrice.substring(6, askPrice.length);
   askPriceP.innerText = askPriceFormatted;
@@ -94,25 +113,64 @@ socket.onmessage = function incoming(data) {
     }
   }
 
-    if(bidPriceFormatted) {
-        let price = Number(bidPriceFormatted);
+  if (bidPriceFormatted) {
+    let price = Number(bidPriceFormatted);
 
-        oneGramTicker.innerText = (((price + 700) / 31.10347) * 1 * 0.377).toFixed(3);
-        twoHalfGramTicker.innerText = (((price + 325) / 31.10347) * 2.5 * 0.377).toFixed(3);
-        fiveGramTicker.innerText = (((price + 270) / 31.10347) * 5 * 0.377).toFixed(3);
-        tenGramTicker.innerText = (((price + 160) / 31.10347) * 10 * 0.377).toFixed(3);
-        oneTolaTicker.innerText = (((price + 145) / 31.10347) * 11.664 * 0.377).toFixed(3);
-        twentyGramTicker.innerText = (((price + 100) / 31.10347) * 20 * 0.377).toFixed(3);
-        twoTolaTicker.innerText = (((price + 105) / 31.10347) * 23.328 * 0.377).toFixed(3);
-        oneOunceTicker.innerText = (((price + 60) / 31.10347) * 31.10347 * 0.377).toFixed(3);
-        fiftyGramTicker.innerText = (((price + 68) / 31.10347) * 50 * 0.377).toFixed(3);
-        fiveTolaTicker.innerText = (((price + 70) / 31.10347) * 58.32 * 0.377).toFixed(3);
-        hundredGramTicker.innerText = (((price + 48) / 31.10347) * 100 * 0.377).toFixed(3);
-        ttPriceTicker.innerText = (((price + 11) / 31.10347) * 116.64 * 0.377).toFixed(3);
-        
-
-
- }
+    oneGramTicker.innerText = (((price + 700) / 31.10347) * 1 * 0.377).toFixed(
+      3
+    );
+    twoHalfGramTicker.innerText = (
+      ((price + 325) / 31.10347) *
+      2.5 *
+      0.377
+    ).toFixed(3);
+    fiveGramTicker.innerText = (((price + 270) / 31.10347) * 5 * 0.377).toFixed(
+      3
+    );
+    tenGramTicker.innerText = (((price + 160) / 31.10347) * 10 * 0.377).toFixed(
+      3
+    );
+    oneTolaTicker.innerText = (
+      ((price + 145) / 31.10347) *
+      11.664 *
+      0.377
+    ).toFixed(3);
+    twentyGramTicker.innerText = (
+      ((price + 100) / 31.10347) *
+      20 *
+      0.377
+    ).toFixed(3);
+    twoTolaTicker.innerText = (
+      ((price + 105) / 31.10347) *
+      23.328 *
+      0.377
+    ).toFixed(3);
+    oneOunceTicker.innerText = (
+      ((price + 60) / 31.10347) *
+      31.10347 *
+      0.377
+    ).toFixed(3);
+    fiftyGramTicker.innerText = (
+      ((price + 68) / 31.10347) *
+      50 *
+      0.377
+    ).toFixed(3);
+    fiveTolaTicker.innerText = (
+      ((price + 70) / 31.10347) *
+      58.32 *
+      0.377
+    ).toFixed(3);
+    hundredGramTicker.innerText = (
+      ((price + 48) / 31.10347) *
+      100 *
+      0.377
+    ).toFixed(3);
+    ttPriceTicker.innerText = (
+      ((price + 11) / 31.10347) *
+      116.64 *
+      0.377
+    ).toFixed(3);
+  }
 
   //   if (priceObject) {
   //     let price = Number(priceObject.substring(6, priceObject.length - 1));
@@ -239,3 +297,24 @@ socket.onmessage = function incoming(data) {
 socket.onerror = function (error) {
   alert(`[error] ${error.message}`);
 };
+
+let currDate = new Date().toISOString().slice(0, 10);
+
+async function goldToday() {
+  let resp = await axios.get(
+    `https://marketdata.tradermade.com/api/v1/historical?currency=XAUUSD&date=${currDate}&api_key=CzyOm57xTxByAcyzwJ-1`
+  );
+  return resp.data.quotes[0];
+}
+
+goldToday().then((data) => {
+  console.log(data.high);
+  console.log(data.low);
+
+lowestDay.innerText = (data.low).toFixed(2);
+highestDay.innerText = (data.high).toFixed(2);
+
+
+});
+
+const historicalURL = `https://marketdata.tradermade.com/api/v1/historical?currency=XAUUSD&date=${currDate}&api_key=CzyOm57xTxByAcyzwJ-1`;

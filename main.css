@@ -138,7 +138,7 @@ body {
 
 .headerBar {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
 
 }
@@ -152,7 +152,7 @@ body {
     margin-top: 3%;
     margin: 15px;
     height: 15vh;
-    width: 30vw;
+    width: 20vw;
 
 }
 
@@ -165,7 +165,7 @@ body {
 }
 
 .mainTitle h1 {
-    font-size: 6rem;
+    font-size: 7rem;
     font-weight: bold;
 }
 
@@ -174,12 +174,33 @@ body {
     font-weight: 600;
 }
 
+.dateSection {
+    display: flex;
+    align-items: center;
+
+}
+
+.timeSection {
+    display: flex;
+    align-items: center;
+}
+
+#todaysDate {
+    font-size: 5rem;
+    font-weight: 600;
+}
+
+#currentTime {
+    font-size: 5rem;
+    font-weight: 600;
+}
+
 .tickerSection {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
     text-align: center;
-    width: 80%;
+    width: 85%;
     margin-left: auto;
     margin-right: auto;
 
@@ -188,22 +209,57 @@ body {
 .askTicker {
     display: flex;
     flex-direction: column;
-    width: 49%;
+    width: 38%;
 }
 
 .bidTicker {
     display: flex;
     flex-direction: column;
-    width: 49%;
+    width: 38%;
 }
 
-.askTicker h2, .bidTicker h2 {
+.askTicker h2, .bidTicker h2, .lowTop h2, .highBottom h2 {
     font-size: 5rem;
+    vertical-align: middle;
+}
+
+.lowAndHigh {
+    display: flex;
+    flex-direction: column;
+    vertical-align: middle;
+
+    width: 24%;
+}
+
+.lowTop {
+display: flex;
+vertical-align:middle;
+align-items: center;
+align-self: center;
+text-align: center;
+padding: 10px;
+}
+
+.highBottom {
+display: flex;
+align-items: center;
+align-self: center;
+text-align: center;
+padding: 10px;
+}
+
+#lowestDay, #highestDay {
+    font-size: 5rem;
+    font-weight: 600;
+    vertical-align:middle;
+    text-align: center;
+    align-items: center;
+align-self: center;
 }
 
 #askPrice, #bidPrice {
   margin-top: -10px;
-    font-size: 12rem;
+    font-size: 10rem;
     font-weight: 500;
 }
 
@@ -216,7 +272,7 @@ body {
   margin-left: auto;
 }
 
-.barPrice1 p, .barPrice2 p {
+.barPrice1 p, .barPrice2 p{
   font-size: 5rem;
   font-weight: 600;
 }
@@ -227,7 +283,7 @@ table {
 
 
 .table1, .table2 {
-  display: block;
+  display: flex;
   margin-right: auto;
   margin-left: auto;
 }
@@ -239,6 +295,7 @@ table {
 tr, td{
   padding: 10px;
 }
+
 
 tr {
   font-size: 5rem;

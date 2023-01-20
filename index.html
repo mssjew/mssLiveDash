@@ -11,15 +11,33 @@
       href="https://fonts.googleapis.com/css2?family=Urbanist:wght@100;400;600;700&display=swap"
       rel="stylesheet"
     />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
     <title>Document</title>
   </head>
   <body>
     <div class="headerBar">
+    
+        
       <div class="logoSection"></div>
+
       <div class="mainTitle">
         <h1>MSS Jewellers</h1>
         <h2>Live Gold Bar Prices</h2>
       </div>
+
+      <div class="dateSection">
+    <p id="todaysDate"></p>
+    </div>
+
+    <div class="timeSection">
+     <p id="currentTime"></p>
+    </div>
+
+
+
+
+
     </div>
 
     <div class="tickerSection">
@@ -32,6 +50,25 @@
         <h2>ASK PRICE</h2>
         <p id="askPrice"></p>
       </div>
+
+      <div class="lowAndHigh">
+        <div class="lowTop">
+            <h2>LOW: </h2>
+            <p id="lowestDay"></p>
+        </div>
+    
+
+        <div class="highBottom">
+            <h2>HIGH: </h2>
+            <p id="highestDay"></p>
+        </div>
+  
+      </div>
+
+<!--      
+      <div class="highestTicker">
+     
+      </div> -->
     </div>
 
     <br />
