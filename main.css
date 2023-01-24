@@ -210,17 +210,20 @@ body {
     display: flex;
     flex-direction: column;
     width: 38%;
+
 }
 
 .bidTicker {
     display: flex;
     flex-direction: column;
     width: 38%;
+  
 }
 
 .askTicker h2, .bidTicker h2, .lowTop h2, .highBottom h2 {
     font-size: 5rem;
     vertical-align: middle;
+
 }
 
 .lowAndHigh {
@@ -261,6 +264,14 @@ align-self: center;
   margin-top: -10px;
     font-size: 10rem;
     font-weight: 500;
+}
+
+.ttSection  {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
 }
 
 .barPriceSection {
