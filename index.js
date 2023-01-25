@@ -27,7 +27,7 @@ let fiftyGramTicker = document.getElementById("fiftyGramTicker");
 let fiveTolaTicker = document.getElementById("fiveTolaTicker");
 let hundredGramTicker = document.getElementById("hundredGramTicker");
 let ttPriceTicker = document.getElementById("ttPriceTicker");
-let ttMain = document.getElementById("ttMain");
+// let mainTT = document.getElementById("mainTT");
 
 async function goldToday() {
   let resp = await axios.get(
@@ -113,6 +113,7 @@ if (currentDay === 0 || currentDay === 6) {
       116.64 *
       0.377
     ).toFixed(3);
+      
   });
 } else {
   let priceHistory = [];
@@ -123,7 +124,8 @@ if (currentDay === 0 || currentDay === 6) {
   let socket = new WebSocket("wss://marketdata.tradermade.com/feedadv");
 
   socket.onopen = function (e) {
-    socket.send('{"userKey":"wsyq7Qki66DBHGD5fxJg", "symbol":"XAUUSD"}');
+    socket.send('{"userKey":"wsfPBRLfMZZllkxLpaFQ", "symbol":"XAUUSD"}');
+    
   };
 
   socket.onmessage = function incoming(data) {
@@ -155,6 +157,7 @@ if (currentDay === 0 || currentDay === 6) {
     askPriceP.innerText = askPriceFormatted;
     askPriceHistory.push(Number(askPriceFormatted));
 
+
     if (bidPriceHistory.length > 3) {
       bidPriceHistory.shift();
     }
@@ -182,6 +185,9 @@ if (currentDay === 0 || currentDay === 6) {
 
     if (bidPriceFormatted) {
       let price = Number(bidPriceFormatted);
+
+  
+
 
       oneGramTicker.innerText = (
         ((price + 700) / 31.10347) *
@@ -331,6 +337,8 @@ goldToday().then((data) => {
 
   lowestDay.innerText = data.low.toFixed(2);
   highestDay.innerText = data.high.toFixed(2);
+
+
 });
 
 const historicalURL = `https://marketdata.tradermade.com/api/v1/historical?currency=XAUUSD&date=${currDate}&api_key=CzyOm57xTxByAcyzwJ-1`;

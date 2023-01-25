@@ -274,6 +274,7 @@ align-self: center;
 
 }
 
+
 .barPriceSection {
   display: flex;
   align-items: center;
@@ -298,6 +299,20 @@ table {
   margin-right: auto;
   margin-left: auto;
 }
+
+
+.table2 tr:first-child {
+  background-color: chocolate;
+  color: white;
+}
+
+
+.table2 tr:first-child td {
+  font-weight: bold;
+  color: white;
+  font-size: 6rem;
+}
+
 /* 
 .table1, .table2 {
   width: 49%;
