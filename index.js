@@ -116,161 +116,169 @@ if (currentDay === 0 || currentDay === 6) {
       
   });
 } else {
-  let priceHistory = [];
 
-  let bidPriceHistory = [];
-  let askPriceHistory = [];
+  const connectWS = () => {
+    let priceHistory = [];
 
-  let socket = new WebSocket("wss://marketdata.tradermade.com/feedadv");
-
-  socket.onopen = function (e) {
-    socket.send('{"userKey":"wsfPBRLfMZZllkxLpaFQ", "symbol":"XAUUSD"}');
+    let bidPriceHistory = [];
+    let askPriceHistory = [];
+  
+    let socket = new WebSocket("wss://marketdata.tradermade.com/feedadv");
+  
+    socket.onopen = function (e) {
+      socket.send('{"userKey":"wsfPBRLfMZZllkxLpaFQ", "symbol":"XAUUSD"}');
+      
+    };
+  
+    socket.onmessage = function incoming(data) {
+      let bidPrice = data.data.split(",")[2];
+      bidPriceFormatted = bidPrice.substring(6, bidPrice.length);
+      bidPriceP.innerText = bidPriceFormatted;
+      bidPriceHistory.push(Number(bidPriceFormatted));
+  
+      //if current ask price is greater than last ask price in array make it green
+      //if current ask price is less than last ask price in array make it red
+      //if current ask price is equal to last ask price in array make it gray
+  
+      if (askPriceHistory.length > 1) {
+        if (
+          askPriceHistory[askPriceHistory.length - 1] >
+          askPriceHistory[askPriceHistory.length - 2]
+        ) {
+          askPriceP.style.color = "green";
+        } else if (
+          askPriceHistory[askPriceHistory.length - 1] <
+          askPriceHistory[askPriceHistory.length - 2]
+        ) {
+          askPriceP.style.color = "red";
+        }
+      }
+  
+      let askPrice = data.data.split(",")[3];
+      askPriceFormatted = askPrice.substring(6, askPrice.length);
+      askPriceP.innerText = askPriceFormatted;
+      askPriceHistory.push(Number(askPriceFormatted));
+  
+  
+      if (bidPriceHistory.length > 3) {
+        bidPriceHistory.shift();
+      }
+      if (askPriceHistory.length > 3) {
+        askPriceHistory.shift();
+      }
+  
+      //if current bid price is greater than last bid price in array make it green
+      //if current bid price is less than last bid price in array make it red
+      //if current bid price is equal to last bid price in array make it gray
+  
+      if (bidPriceHistory.length > 1) {
+        if (
+          bidPriceHistory[bidPriceHistory.length - 1] >
+          bidPriceHistory[bidPriceHistory.length - 2]
+        ) {
+          bidPriceP.style.color = "green";
+        } else if (
+          bidPriceHistory[bidPriceHistory.length - 1] <
+          bidPriceHistory[bidPriceHistory.length - 2]
+        ) {
+          bidPriceP.style.color = "red";
+        }
+      }
+  
+      if (bidPriceFormatted) {
+        let price = Number(bidPriceFormatted);
+  
+    
+  
+  
+        oneGramTicker.innerText = (
+          ((price + 700) / 31.10347) *
+          1 *
+          0.377
+        ).toFixed(3);
+        twoHalfGramTicker.innerText = (
+          ((price + 325) / 31.10347) *
+          2.5 *
+          0.377
+        ).toFixed(3);
+        fiveGramTicker.innerText = (
+          ((price + 270) / 31.10347) *
+          5 *
+          0.377
+        ).toFixed(3);
+        tenGramTicker.innerText = (
+          ((price + 160) / 31.10347) *
+          10 *
+          0.377
+        ).toFixed(3);
+        oneTolaTicker.innerText = (
+          ((price + 145) / 31.10347) *
+          11.664 *
+          0.377
+        ).toFixed(3);
+        twentyGramTicker.innerText = (
+          ((price + 100) / 31.10347) *
+          20 *
+          0.377
+        ).toFixed(3);
+        twoTolaTicker.innerText = (
+          ((price + 105) / 31.10347) *
+          23.328 *
+          0.377
+        ).toFixed(3);
+        oneOunceTicker.innerText = (
+          ((price + 60) / 31.10347) *
+          31.10347 *
+          0.377
+        ).toFixed(3);
+        fiftyGramTicker.innerText = (
+          ((price + 68) / 31.10347) *
+          50 *
+          0.377
+        ).toFixed(3);
+        fiveTolaTicker.innerText = (
+          ((price + 70) / 31.10347) *
+          58.32 *
+          0.377
+        ).toFixed(3);
+        hundredGramTicker.innerText = (
+          ((price + 48) / 31.10347) *
+          100 *
+          0.377
+        ).toFixed(3);
+        ttPriceTicker.innerText = (
+          ((price + 11) / 31.10347) *
+          116.64 *
+          0.377
+        ).toFixed(3);
+      }
+  
+      if (priceHistory.length > 1) {
+        if (
+          priceHistory[priceHistory.length - 1] >
+          priceHistory[priceHistory.length - 2]
+        ) {
+          ticker.style.color = "green";
+        } else if (
+          priceHistory[priceHistory.length - 1] <
+          priceHistory[priceHistory.length - 2]
+        ) {
+          ticker.style.color = "red";
+        } else {
+          ticker.style.color = "gray";
+        }
+      }
+    };
+  
+    socket.onerror = function (error) {
+      alert(`[error] ${error.message}`);
+    };
     
   };
 
-  socket.onmessage = function incoming(data) {
-    let bidPrice = data.data.split(",")[2];
-    bidPriceFormatted = bidPrice.substring(6, bidPrice.length);
-    bidPriceP.innerText = bidPriceFormatted;
-    bidPriceHistory.push(Number(bidPriceFormatted));
+  connectWS();
+  setInterval(connectWS, 300000);
 
-    //if current ask price is greater than last ask price in array make it green
-    //if current ask price is less than last ask price in array make it red
-    //if current ask price is equal to last ask price in array make it gray
-
-    if (askPriceHistory.length > 1) {
-      if (
-        askPriceHistory[askPriceHistory.length - 1] >
-        askPriceHistory[askPriceHistory.length - 2]
-      ) {
-        askPriceP.style.color = "green";
-      } else if (
-        askPriceHistory[askPriceHistory.length - 1] <
-        askPriceHistory[askPriceHistory.length - 2]
-      ) {
-        askPriceP.style.color = "red";
-      }
-    }
-
-    let askPrice = data.data.split(",")[3];
-    askPriceFormatted = askPrice.substring(6, askPrice.length);
-    askPriceP.innerText = askPriceFormatted;
-    askPriceHistory.push(Number(askPriceFormatted));
-
-
-    if (bidPriceHistory.length > 3) {
-      bidPriceHistory.shift();
-    }
-    if (askPriceHistory.length > 3) {
-      askPriceHistory.shift();
-    }
-
-    //if current bid price is greater than last bid price in array make it green
-    //if current bid price is less than last bid price in array make it red
-    //if current bid price is equal to last bid price in array make it gray
-
-    if (bidPriceHistory.length > 1) {
-      if (
-        bidPriceHistory[bidPriceHistory.length - 1] >
-        bidPriceHistory[bidPriceHistory.length - 2]
-      ) {
-        bidPriceP.style.color = "green";
-      } else if (
-        bidPriceHistory[bidPriceHistory.length - 1] <
-        bidPriceHistory[bidPriceHistory.length - 2]
-      ) {
-        bidPriceP.style.color = "red";
-      }
-    }
-
-    if (bidPriceFormatted) {
-      let price = Number(bidPriceFormatted);
-
-  
-
-
-      oneGramTicker.innerText = (
-        ((price + 700) / 31.10347) *
-        1 *
-        0.377
-      ).toFixed(3);
-      twoHalfGramTicker.innerText = (
-        ((price + 325) / 31.10347) *
-        2.5 *
-        0.377
-      ).toFixed(3);
-      fiveGramTicker.innerText = (
-        ((price + 270) / 31.10347) *
-        5 *
-        0.377
-      ).toFixed(3);
-      tenGramTicker.innerText = (
-        ((price + 160) / 31.10347) *
-        10 *
-        0.377
-      ).toFixed(3);
-      oneTolaTicker.innerText = (
-        ((price + 145) / 31.10347) *
-        11.664 *
-        0.377
-      ).toFixed(3);
-      twentyGramTicker.innerText = (
-        ((price + 100) / 31.10347) *
-        20 *
-        0.377
-      ).toFixed(3);
-      twoTolaTicker.innerText = (
-        ((price + 105) / 31.10347) *
-        23.328 *
-        0.377
-      ).toFixed(3);
-      oneOunceTicker.innerText = (
-        ((price + 60) / 31.10347) *
-        31.10347 *
-        0.377
-      ).toFixed(3);
-      fiftyGramTicker.innerText = (
-        ((price + 68) / 31.10347) *
-        50 *
-        0.377
-      ).toFixed(3);
-      fiveTolaTicker.innerText = (
-        ((price + 70) / 31.10347) *
-        58.32 *
-        0.377
-      ).toFixed(3);
-      hundredGramTicker.innerText = (
-        ((price + 48) / 31.10347) *
-        100 *
-        0.377
-      ).toFixed(3);
-      ttPriceTicker.innerText = (
-        ((price + 11) / 31.10347) *
-        116.64 *
-        0.377
-      ).toFixed(3);
-    }
-
-    if (priceHistory.length > 1) {
-      if (
-        priceHistory[priceHistory.length - 1] >
-        priceHistory[priceHistory.length - 2]
-      ) {
-        ticker.style.color = "green";
-      } else if (
-        priceHistory[priceHistory.length - 1] <
-        priceHistory[priceHistory.length - 2]
-      ) {
-        ticker.style.color = "red";
-      } else {
-        ticker.style.color = "gray";
-      }
-    }
-  };
-
-  socket.onerror = function (error) {
-    alert(`[error] ${error.message}`);
-  };
 }
 
 // get todays date and insert into html
@@ -342,8 +350,3 @@ goldToday().then((data) => {
 });
 
 const historicalURL = `https://marketdata.tradermade.com/api/v1/historical?currency=XAUUSD&date=${currDate}&api_key=CzyOm57xTxByAcyzwJ-1`;
-
-//refersh the entire page every 5 minutes
-setInterval(function () {
-  location.reload();
-}, 300000);
