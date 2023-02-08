@@ -126,7 +126,7 @@ if (currentDay === 0 || currentDay === 6) {
     let socket = new WebSocket("wss://marketdata.tradermade.com/feedadv");
   
     socket.onopen = function (e) {
-      socket.send('{"userKey":"wsfPBRLfMZZllkxLpaFQ", "symbol":"XAUUSD"}');
+      socket.send('{"userKey":"wsfxBLFZo-Q15DPHWLLA", "symbol":"XAUUSD"}');
       
     };
   
@@ -277,7 +277,7 @@ if (currentDay === 0 || currentDay === 6) {
   };
 
   connectWS();
-  setInterval(connectWS, 300000);
+  setInterval(connectWS, 120000);
 
 }
 
@@ -345,8 +345,6 @@ goldToday().then((data) => {
 
   lowestDay.innerText = data.low.toFixed(2);
   highestDay.innerText = data.high.toFixed(2);
-
-
 });
 
 const historicalURL = `https://marketdata.tradermade.com/api/v1/historical?currency=XAUUSD&date=${currDate}&api_key=CzyOm57xTxByAcyzwJ-1`;
