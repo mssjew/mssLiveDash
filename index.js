@@ -67,34 +67,34 @@ if (currentDay === 0 || currentDay === 6) {
       2.5 *
       0.377
     ).toFixed(3);
-    fiveGramTicker.innerText = (((price + 270) / 31.10347) * 5 * 0.377).toFixed(
+    fiveGramTicker.innerText = (((price + 275) / 31.10347) * 5 * 0.377).toFixed(
       3
     );
-    tenGramTicker.innerText = (((price + 160) / 31.10347) * 10 * 0.377).toFixed(
+    tenGramTicker.innerText = (((price + 185) / 31.10347) * 10 * 0.377).toFixed(
       3
     );
     oneTolaTicker.innerText = (
-      ((price + 145) / 31.10347) *
+      ((price + 188) / 31.10347) *
       11.664 *
       0.377
     ).toFixed(3);
     twentyGramTicker.innerText = (
-      ((price + 100) / 31.10347) *
+      ((price + 125) / 31.10347) *
       20 *
       0.377
     ).toFixed(3);
     twoTolaTicker.innerText = (
-      ((price + 105) / 31.10347) *
+      ((price + 132) / 31.10347) *
       23.328 *
       0.377
     ).toFixed(3);
     oneOunceTicker.innerText = (
-      ((price + 60) / 31.10347) *
+      ((price + 78) / 31.10347) *
       31.10347 *
       0.377
     ).toFixed(3);
     fiftyGramTicker.innerText = (
-      ((price + 68) / 31.10347) *
+      ((price + 79) / 31.10347) *
       50 *
       0.377
     ).toFixed(3);
@@ -104,12 +104,12 @@ if (currentDay === 0 || currentDay === 6) {
       0.377
     ).toFixed(3);
     hundredGramTicker.innerText = (
-      ((price + 48) / 31.10347) *
+      ((price + 56) / 31.10347) *
       100 *
       0.377
     ).toFixed(3);
     ttPriceTicker.innerText = (
-      ((price + 11) / 31.10347) *
+      ((price + 13) / 31.10347) *
       116.64 *
       0.377
     ).toFixed(3);
@@ -202,37 +202,37 @@ if (currentDay === 0 || currentDay === 6) {
           0.377
         ).toFixed(3);
         fiveGramTicker.innerText = (
-          ((price + 270) / 31.10347) *
+          ((price + 275) / 31.10347) *
           5 *
           0.377
         ).toFixed(3);
         tenGramTicker.innerText = (
-          ((price + 160) / 31.10347) *
+          ((price + 185) / 31.10347) *
           10 *
           0.377
         ).toFixed(3);
         oneTolaTicker.innerText = (
-          ((price + 145) / 31.10347) *
+          ((price + 188) / 31.10347) *
           11.664 *
           0.377
         ).toFixed(3);
         twentyGramTicker.innerText = (
-          ((price + 100) / 31.10347) *
+          ((price + 125) / 31.10347) *
           20 *
           0.377
         ).toFixed(3);
         twoTolaTicker.innerText = (
-          ((price + 105) / 31.10347) *
+          ((price + 132) / 31.10347) *
           23.328 *
           0.377
         ).toFixed(3);
         oneOunceTicker.innerText = (
-          ((price + 60) / 31.10347) *
+          ((price + 78) / 31.10347) *
           31.10347 *
           0.377
         ).toFixed(3);
         fiftyGramTicker.innerText = (
-          ((price + 68) / 31.10347) *
+          ((price + 79) / 31.10347) *
           50 *
           0.377
         ).toFixed(3);
@@ -242,12 +242,12 @@ if (currentDay === 0 || currentDay === 6) {
           0.377
         ).toFixed(3);
         hundredGramTicker.innerText = (
-          ((price + 48) / 31.10347) *
+          ((price + 56) / 31.10347) *
           100 *
           0.377
         ).toFixed(3);
         ttPriceTicker.innerText = (
-          ((price + 11) / 31.10347) *
+          ((price + 13) / 31.10347) *
           116.64 *
           0.377
         ).toFixed(3);
