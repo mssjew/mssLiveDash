@@ -126,7 +126,7 @@ if (currentDay === 0 || currentDay === 6) {
     let socket = new WebSocket("wss://marketdata.tradermade.com/feedadv");
   
     socket.onopen = function (e) {
-      socket.send('{"userKey":"wsfxBLFZo-Q15DPHWLLA", "symbol":"XAUUSD"}');
+      socket.send('{"userKey":"wsCWW2BwZ957oSzyCXxg", "symbol":"XAUUSD"}');
       
     };
   
