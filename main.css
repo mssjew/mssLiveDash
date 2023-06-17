@@ -125,6 +125,17 @@ html {
 
 body {
     font-family: 'Urbanist', sans-serif;
+    background-image: url(images/bg3.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    color: white;
+
+
   }
   
 
@@ -138,8 +149,9 @@ body {
 
 .headerBar {
     display: flex;
-    justify-content: space-evenly;
+    justify-content:left;
     align-items: center;
+    justify-content: flex-start;
 
 }
 
@@ -175,7 +187,7 @@ body {
 }
 
 #marketStatus {
-  color: chocolate;
+  color: rgb(255, 208, 0);
 }
 
 .dateSection {
@@ -186,37 +198,36 @@ body {
 }
 
 #todaysDate {
-    font-size: 4rem;
+    font-size: 6rem;
     font-weight: 600;
 }
 
 #currentTime {
-    font-size: 4rem;
+    font-size: 6rem;
     font-weight: 600;
 }
 
 .tickerSection {
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: flex-start;
     text-align: center;
-    width: 85%;
-    margin-left: auto;
-    margin-right: auto;
+
 
 }
 
 .askTicker {
     display: flex;
     flex-direction: column;
-    width: 38%;
+    width: 30%;
 
 }
 
 .bidTicker {
     display: flex;
     flex-direction: column;
-    width: 38%;
+    width: 30%;
+
   
 }
 
@@ -277,11 +288,11 @@ align-self: center;
 
 .barPriceSection {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 90%;
-  margin-right: auto;
-  margin-left: auto;
+  align-items: flex-start;
+  justify-content: flex-start;
+  /* margin-right: auto;
+  margin-left: auto; */
+  margin-left: 20px;
 }
 
 .barPrice1 p, .barPrice2 p{
@@ -296,8 +307,8 @@ table {
 
 .table1, .table2 {
   display: flex;
-  margin-right: auto;
-  margin-left: auto;
+  /* margin-right: auto;
+  margin-left: auto; */
 }
 
 
@@ -311,6 +322,7 @@ table {
   font-weight: bold;
   color: white;
   font-size: 6rem;
+  text-shadow: none;
 }
 
 /* 
@@ -324,12 +336,14 @@ tr, td{
 
 
 tr {
-  font-size: 5rem;
+  font-size: 5.5rem;
 }
 
 tr td:last-child {
-  color: chocolate;
+  color: rgb(255, 208, 0);
   font-weight: bold;
+
+
 }
 
 tr td:first-child {

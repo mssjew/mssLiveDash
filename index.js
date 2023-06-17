@@ -53,72 +53,73 @@ if (currentDay === 0 || currentDay === 6) {
 
   goldClosed().then((data) => {
     let bidPrice = data.bid;
-    bidPriceP.innerText = bidPrice;
     let askPrice = data.ask;
-    askPriceP.innerText = askPrice;
+    bidPriceP.innerText = askPrice;
+
+    // askPriceP.innerText = askPrice;
 
     let price = askPrice;
 
     oneGramTicker.innerText = (((price + 700) / 31.10347) * 1 * 0.377).toFixed(
-      3
+      0
     );
     twoHalfGramTicker.innerText = (
       ((price + 325) / 31.10347) *
       2.5 *
       0.377
-    ).toFixed(3);
+    ).toFixed(0);
     fiveGramTicker.innerText = (((price + 300) / 31.10347) * 5 * 0.377).toFixed(
-      3
+      0
     );
     tenGramTicker.innerText = (((price + 210) / 31.10347) * 10 * 0.377).toFixed(
-      3
+      0
     );
     oneTolaTicker.innerText = (
       ((price + 210) / 31.10347) *
       11.664 *
       0.377
-    ).toFixed(3);
+    ).toFixed(0);
     twentyGramTicker.innerText = (
       ((price + 138) / 31.10347) *
       20 *
       0.377
-    ).toFixed(3);
+    ).toFixed(0);
     twoTolaTicker.innerText = (
       ((price + 148) / 31.10347) *
       23.328 *
       0.377
-    ).toFixed(3);
+    ).toFixed(0);
     oneOunceTicker.innerText = (
       ((price + 87) / 31.10347) *
       31.10347 *
       0.377
-    ).toFixed(3);
+    ).toFixed(0);
     fiftyGramTicker.innerText = (
       ((price + 88) / 31.10347) *
       50 *
       0.377
-    ).toFixed(3);
+    ).toFixed(0);
     fiveTolaTicker.innerText = (
       ((price + 77) / 31.10347) *
       58.32 *
       0.377
-    ).toFixed(3);
+    ).toFixed(0);
     hundredGramTicker.innerText = (
       ((price + 61) / 31.10347) *
       100 *
       0.377
-    ).toFixed(3);
+    ).toFixed(0);
     ttPriceTicker.innerText = (
       ((price + 17) / 31.10347) *
       116.64 *
       0.377
-    ).toFixed(3);
+    ).toFixed(0);
       
   });
 } else {
 
   const connectWS = () => {
-    let priceHistory = [];
+    let priceHistory = []
 
     let bidPriceHistory = [];
     let askPriceHistory = [];
@@ -301,29 +302,29 @@ setInterval(function () {
 
 // if(priceObject)  console.log(priceObject.substring(6, priceObject.length - 1) + "  Tick#" + counter);
 
-// let ttPrice = (((askPrice + 11)/31.10347)*116.64*0.377).toFixed(3);
+// let ttPrice = (((askPrice + 11)/31.10347)*116.64*0.377).toFixed(0);
 
-// let hundredGrams = (((askPrice + 48)/31.10347)*100*0.377).toFixed(3);
+// let hundredGrams = (((askPrice + 48)/31.10347)*100*0.377).toFixed(0);
 
-// let fiveTola = (((askPrice + 70)/31.10347)*58.32*0.377).toFixed(3);
+// let fiveTola = (((askPrice + 70)/31.10347)*58.32*0.377).toFixed(0);
 
-// let fiftyGrams = (((askPrice + 68)/31.10347)*50*0.377).toFixed(3);
+// let fiftyGrams = (((askPrice + 68)/31.10347)*50*0.377).toFixed(0);
 
-// let oneOunce = (((askPrice + 60)/31.10347)*31.10347*0.377).toFixed(3);
+// let oneOunce = (((askPrice + 60)/31.10347)*31.10347*0.377).toFixed(0);
 
-// let twoTola = (((askPrice + 105)/31.10347)*23.328*0.377).toFixed(3);
+// let twoTola = (((askPrice + 105)/31.10347)*23.328*0.377).toFixed(0);
 
-// let twentyGrams = (((askPrice + 100)/31.10347)*20*0.377).toFixed(3);
+// let twentyGrams = (((askPrice + 100)/31.10347)*20*0.377).toFixed(0);
 
-// let oneTola = (((askPrice + 145)/31.10347)*11.664*0.377).toFixed(3);
+// let oneTola = (((askPrice + 145)/31.10347)*11.664*0.377).toFixed(0);
 
-// let tenGrams = (((askPrice + 160)/31.10347)*10*0.377).toFixed(3);
+// let tenGrams = (((askPrice + 160)/31.10347)*10*0.377).toFixed(0);
 
-// let fiveGrams = (((askPrice + 270)/31.10347)*5*0.377).toFixed(3);
+// let fiveGrams = (((askPrice + 270)/31.10347)*5*0.377).toFixed(0);
 
-// let twoandHalfGrams = (((askPrice + 325)/31.10347)*2.5*0.377).toFixed(3);
+// let twoandHalfGrams = (((askPrice + 325)/31.10347)*2.5*0.377).toFixed(0);
 
-// let oneGram = (((askPrice + 700)/31.10347)*1*0.377).toFixed(3);
+// let oneGram = (((askPrice + 700)/31.10347)*1*0.377).toFixed(0);
 
 // console.log(priceHistory);
 
@@ -339,12 +340,12 @@ setInterval(function () {
 
 let currDate = new Date().toISOString().slice(0, 10);
 
-goldToday().then((data) => {
-  console.log(data.high);
-  console.log(data.low);
+// goldToday().then((data) => {
+//   console.log(data.high);
+//   console.log(data.low);
 
-  lowestDay.innerText = data.low.toFixed(2);
-  highestDay.innerText = data.high.toFixed(2);
-});
+//   lowestDay.innerText = data.low.toFixed(2);
+//   highestDay.innerText = data.high.toFixed(2);
+// });
 
 const historicalURL = `https://marketdata.tradermade.com/api/v1/historical?currency=XAUUSD&date=${currDate}&api_key=CzyOm57xTxByAcyzwJ-1`;
