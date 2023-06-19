@@ -136,29 +136,31 @@ if (currentDay === 0 || currentDay === 6) {
       bidPriceFormatted = bidPrice.substring(6, bidPrice.length);
       bidPriceP.innerText = bidPriceFormatted;
       bidPriceHistory.push(Number(bidPriceFormatted));
+
+        
+      let askPrice = data.data.split(",")[3];
+      askPriceFormatted = askPrice.substring(6, askPrice.length);
+      // askPriceP.innerText = askPriceFormatted;
+      askPriceHistory.push(Number(askPriceFormatted));
   
       //if current ask price is greater than last ask price in array make it green
       //if current ask price is less than last ask price in array make it red
       //if current ask price is equal to last ask price in array make it gray
   
-      if (askPriceHistory.length > 1) {
-        if (
-          askPriceHistory[askPriceHistory.length - 1] >
-          askPriceHistory[askPriceHistory.length - 2]
-        ) {
-          askPriceP.style.color = "green";
-        } else if (
-          askPriceHistory[askPriceHistory.length - 1] <
-          askPriceHistory[askPriceHistory.length - 2]
-        ) {
-          askPriceP.style.color = "red";
-        }
-      }
-  
-      let askPrice = data.data.split(",")[3];
-      askPriceFormatted = askPrice.substring(6, askPrice.length);
-      askPriceP.innerText = askPriceFormatted;
-      askPriceHistory.push(Number(askPriceFormatted));
+      // if (askPriceHistory.length > 1) {
+      //   if (
+      //     askPriceHistory[askPriceHistory.length - 1] >
+      //     askPriceHistory[askPriceHistory.length - 2]
+      //   ) {
+      //     askPriceP.style.color = "green";
+      //   } else if (
+      //     askPriceHistory[askPriceHistory.length - 1] <
+      //     askPriceHistory[askPriceHistory.length - 2]
+      //   ) {
+      //     askPriceP.style.color = "red";
+      //   }
+      // }
+
   
   
       if (bidPriceHistory.length > 3) {
@@ -177,17 +179,17 @@ if (currentDay === 0 || currentDay === 6) {
           bidPriceHistory[bidPriceHistory.length - 1] >
           bidPriceHistory[bidPriceHistory.length - 2]
         ) {
-          bidPriceP.style.color = "green";
+          bidPriceP.style.color = "#4FFF4F";
         } else if (
           bidPriceHistory[bidPriceHistory.length - 1] <
           bidPriceHistory[bidPriceHistory.length - 2]
         ) {
-          bidPriceP.style.color = "red";
+          bidPriceP.style.color = "#FD2F43";
         }
       }
   
-      if (bidPriceFormatted) {
-        let price = Number(bidPriceFormatted);
+      if (askPriceFormatted) {
+        let price = Number(askPriceFormatted);
   
     
   
@@ -196,62 +198,62 @@ if (currentDay === 0 || currentDay === 6) {
           ((price + 700) / 31.10347) *
           1 *
           0.377
-        ).toFixed(3);
+        ).toFixed(0);
         twoHalfGramTicker.innerText = (
           ((price + 325) / 31.10347) *
           2.5 *
           0.377
-        ).toFixed(3);
+        ).toFixed(0);
         fiveGramTicker.innerText = (
           ((price + 300) / 31.10347) *
           5 *
           0.377
-        ).toFixed(3);
+        ).toFixed(0);
         tenGramTicker.innerText = (
           ((price + 210) / 31.10347) *
           10 *
           0.377
-        ).toFixed(3);
+        ).toFixed(0);
         oneTolaTicker.innerText = (
           ((price + 210) / 31.10347) *
           11.664 *
           0.377
-        ).toFixed(3);
+        ).toFixed(0);
         twentyGramTicker.innerText = (
           ((price + 138) / 31.10347) *
           20 *
           0.377
-        ).toFixed(3);
+        ).toFixed(0);
         twoTolaTicker.innerText = (
           ((price + 148) / 31.10347) *
           23.328 *
           0.377
-        ).toFixed(3);
+        ).toFixed(0);
         oneOunceTicker.innerText = (
           ((price + 87) / 31.10347) *
           31.10347 *
           0.377
-        ).toFixed(3);
+        ).toFixed(0);
         fiftyGramTicker.innerText = (
           ((price + 88) / 31.10347) *
           50 *
           0.377
-        ).toFixed(3);
+        ).toFixed(0);
         fiveTolaTicker.innerText = (
           ((price + 77) / 31.10347) *
           58.32 *
           0.377
-        ).toFixed(3);
+        ).toFixed(0);
         hundredGramTicker.innerText = (
           ((price + 61) / 31.10347) *
           100 *
           0.377
-        ).toFixed(3);
+        ).toFixed(0);
         ttPriceTicker.innerText = (
           ((price + 17) / 31.10347) *
           116.64 *
           0.377
-        ).toFixed(3);
+        ).toFixed(0);
       }
   
       if (priceHistory.length > 1) {
