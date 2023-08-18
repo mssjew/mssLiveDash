@@ -75,7 +75,7 @@ if (currentDay === 0 || currentDay === 6) {
       0
     );
     oneTolaTicker.innerText = (
-      ((price + 138) / 31.10347) *
+      ((price + 150) / 31.10347) *
       11.664 *
       0.377
     ).toFixed(0);
@@ -85,7 +85,7 @@ if (currentDay === 0 || currentDay === 6) {
       0.377
     ).toFixed(0);
     twoTolaTicker.innerText = (
-      ((price + 120) / 31.10347) *
+      ((price + 135) / 31.10347) *
       23.328 *
       0.377
     ).toFixed(0);
@@ -95,12 +95,12 @@ if (currentDay === 0 || currentDay === 6) {
       0.377
     ).toFixed(0);
     fiftyGramTicker.innerText = (
-      ((price + 52) / 31.10347) *
+      ((price + 77) / 31.10347) *
       50 *
       0.377
     ).toFixed(0);
     fiveTolaTicker.innerText = (
-      ((price + 60) / 31.10347) *
+      ((price + 63) / 31.10347) *
       58.32 *
       0.377
     ).toFixed(0);
@@ -215,7 +215,7 @@ if (currentDay === 0 || currentDay === 6) {
           0.377
         ).toFixed(0);
         oneTolaTicker.innerText = (
-          ((price + 138) / 31.10347) *
+          ((price + 150) / 31.10347) *
           11.664 *
           0.377
         ).toFixed(0);
@@ -225,7 +225,7 @@ if (currentDay === 0 || currentDay === 6) {
           0.377
         ).toFixed(0);
         twoTolaTicker.innerText = (
-          ((price + 120) / 31.10347) *
+          ((price + 135) / 31.10347) *
           23.328 *
           0.377
         ).toFixed(0);
@@ -235,12 +235,12 @@ if (currentDay === 0 || currentDay === 6) {
           0.377
         ).toFixed(0);
         fiftyGramTicker.innerText = (
-          ((price + 52) / 31.10347) *
+          ((price + 77) / 31.10347) *
           50 *
           0.377
         ).toFixed(0);
         fiveTolaTicker.innerText = (
-          ((price + 60) / 31.10347) *
+          ((price + 63) / 31.10347) *
           58.32 *
           0.377
         ).toFixed(0);
