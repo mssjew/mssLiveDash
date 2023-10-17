@@ -64,33 +64,33 @@ if (currentDay === 0 || currentDay === 6) {
       0
     );
     twoHalfGramTicker.innerText = (
-      ((price + 300) / 31.10347) *
+      ((price + 325) / 31.10347) *
       2.5 *
       0.377
     ).toFixed(0);
-    fiveGramTicker.innerText = (((price + 250) / 31.10347) * 5 * 0.377).toFixed(
+    fiveGramTicker.innerText = (((price + 275) / 31.10347) * 5 * 0.377).toFixed(
       0
     );
-    tenGramTicker.innerText = (((price + 160) / 31.10347) * 10 * 0.377).toFixed(
+    tenGramTicker.innerText = (((price + 180) / 31.10347) * 10 * 0.377).toFixed(
       0
     );
     oneTolaTicker.innerText = (
-      ((price + 150) / 31.10347) *
+      ((price + 165) / 31.10347) *
       11.664 *
       0.377
     ).toFixed(0);
     twentyGramTicker.innerText = (
-      ((price + 100) / 31.10347) *
+      ((price + 125) / 31.10347) *
       20 *
       0.377
     ).toFixed(0);
     twoTolaTicker.innerText = (
-      ((price + 135) / 31.10347) *
+      ((price + 140) / 31.10347) *
       23.328 *
       0.377
     ).toFixed(0);
     oneOunceTicker.innerText = (
-      ((price + 73) / 31.10347) *
+      ((price + 82) / 31.10347) *
       31.10347 *
       0.377
     ).toFixed(0);
@@ -100,12 +100,12 @@ if (currentDay === 0 || currentDay === 6) {
       0.377
     ).toFixed(0);
     fiveTolaTicker.innerText = (
-      ((price + 63) / 31.10347) *
+      ((price + 67) / 31.10347) *
       58.32 *
       0.377
     ).toFixed(0);
     hundredGramTicker.innerText = (
-      ((price + 37) / 31.10347) *
+      ((price + 41) / 31.10347) *
       100 *
       0.377
     ).toFixed(0);
@@ -127,7 +127,7 @@ if (currentDay === 0 || currentDay === 6) {
     let socket = new WebSocket("wss://marketdata.tradermade.com/feedadv");
   
     socket.onopen = function (e) {
-      socket.send('{"userKey":"wsB8IBQ2CBbSV5gs6S-g", "symbol":"XAUUSD"}');
+      socket.send('{"userKey":"wsdLhU0FzkvOnP_agJqQ", "symbol":"XAUUSD"}');
       
     };
   
@@ -200,37 +200,37 @@ if (currentDay === 0 || currentDay === 6) {
           0.377
         ).toFixed(0);
         twoHalfGramTicker.innerText = (
-          ((price + 300) / 31.10347) *
+          ((price + 325) / 31.10347) *
           2.5 *
           0.377
         ).toFixed(0);
         fiveGramTicker.innerText = (
-          ((price + 250) / 31.10347) *
+          ((price + 275) / 31.10347) *
           5 *
           0.377
         ).toFixed(0);
         tenGramTicker.innerText = (
-          ((price + 160) / 31.10347) *
+          ((price + 180) / 31.10347) *
           10 *
           0.377
         ).toFixed(0);
         oneTolaTicker.innerText = (
-          ((price + 150) / 31.10347) *
+          ((price + 165) / 31.10347) *
           11.664 *
           0.377
         ).toFixed(0);
         twentyGramTicker.innerText = (
-          ((price + 100) / 31.10347) *
+          ((price + 125) / 31.10347) *
           20 *
           0.377
         ).toFixed(0);
         twoTolaTicker.innerText = (
-          ((price + 135) / 31.10347) *
+          ((price + 140) / 31.10347) *
           23.328 *
           0.377
         ).toFixed(0);
         oneOunceTicker.innerText = (
-          ((price + 73) / 31.10347) *
+          ((price + 82) / 31.10347) *
           31.10347 *
           0.377
         ).toFixed(0);
@@ -240,12 +240,12 @@ if (currentDay === 0 || currentDay === 6) {
           0.377
         ).toFixed(0);
         fiveTolaTicker.innerText = (
-          ((price + 63) / 31.10347) *
+          ((price + 67) / 31.10347) *
           58.32 *
           0.377
         ).toFixed(0);
         hundredGramTicker.innerText = (
-          ((price + 37) / 31.10347) *
+          ((price + 41) / 31.10347) *
           100 *
           0.377
         ).toFixed(0);
