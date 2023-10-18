@@ -315,7 +315,7 @@ table {
 
 
 .table2 tr:first-child {
-  background-color: chocolate;
+  background-color: red;
   color: white;
 }
 
