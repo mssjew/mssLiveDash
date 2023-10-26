@@ -130,7 +130,7 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    height: 100vh;
+    height: 80vh;
     width: 100vw;
     overflow: hidden;
     color: white;
@@ -151,7 +151,8 @@ body {
     display: flex;
     justify-content:left;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: space-evenly;
+
 
 }
 
@@ -223,12 +224,14 @@ body {
     flex-direction: column;
     width: 30%;
 
+
 }
 
 .bidTicker {
     display: flex;
     flex-direction: column;
     width: 30%;
+  
 
   
 }
@@ -273,10 +276,24 @@ padding: 10px;
 align-self: center;
 }
 
+#lowestDay {
+color: red;
+background-color: white;
+}
+ #highestDay {
+  color: green;
+  background-color: white;
+ }
+
+
 #askPrice, #bidPrice {
   margin-top: -10px;
     font-size: 10rem;
     font-weight: 500;
+    background-color: white;
+    width: 70%;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 .ttSection  {

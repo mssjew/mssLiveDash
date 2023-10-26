@@ -127,7 +127,7 @@ if (currentDay === 0 || currentDay === 6) {
     let socket = new WebSocket("wss://marketdata.tradermade.com/feedadv");
   
     socket.onopen = function (e) {
-      socket.send('{"userKey":"wsdLhU0FzkvOnP_agJqQ", "symbol":"XAUUSD"}');
+      socket.send('{"userKey":"wsplkh1NFkrk1uLvhWrg", "symbol":"XAUUSD"}');
       
     };
   
@@ -140,26 +140,26 @@ if (currentDay === 0 || currentDay === 6) {
         
       let askPrice = data.data.split(",")[3];
       askPriceFormatted = askPrice.substring(6, askPrice.length);
-      // askPriceP.innerText = askPriceFormatted;
+      askPriceP.innerText = askPriceFormatted;
       askPriceHistory.push(Number(askPriceFormatted));
   
       //if current ask price is greater than last ask price in array make it green
       //if current ask price is less than last ask price in array make it red
       //if current ask price is equal to last ask price in array make it gray
   
-      // if (askPriceHistory.length > 1) {
-      //   if (
-      //     askPriceHistory[askPriceHistory.length - 1] >
-      //     askPriceHistory[askPriceHistory.length - 2]
-      //   ) {
-      //     askPriceP.style.color = "green";
-      //   } else if (
-      //     askPriceHistory[askPriceHistory.length - 1] <
-      //     askPriceHistory[askPriceHistory.length - 2]
-      //   ) {
-      //     askPriceP.style.color = "red";
-      //   }
-      // }
+      if (askPriceHistory.length > 1) {
+        if (
+          askPriceHistory[askPriceHistory.length - 1] >
+          askPriceHistory[askPriceHistory.length - 2]
+        ) {
+          askPriceP.style.color = "green";
+       } else if (
+         askPriceHistory[askPriceHistory.length - 1] <
+          askPriceHistory[askPriceHistory.length - 2]
+       ) {
+          askPriceP.style.color = "red";
+       }
+      }
 
   
   
@@ -179,12 +179,12 @@ if (currentDay === 0 || currentDay === 6) {
           bidPriceHistory[bidPriceHistory.length - 1] >
           bidPriceHistory[bidPriceHistory.length - 2]
         ) {
-          bidPriceP.style.color = "#4FFF4F";
+          bidPriceP.style.color = "green";
         } else if (
           bidPriceHistory[bidPriceHistory.length - 1] <
           bidPriceHistory[bidPriceHistory.length - 2]
         ) {
-          bidPriceP.style.color = "#FD2F43";
+          bidPriceP.style.color = "red";
         }
       }
   
