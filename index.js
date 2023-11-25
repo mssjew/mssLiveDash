@@ -52,9 +52,11 @@ if (currentDay === 0 || currentDay === 6) {
   marketStatus.innerHTML = " (MARKET CLOSED) ";
 
   goldClosed().then((data) => {
+
     let bidPrice = data.bid;
     let askPrice = data.ask;
-    bidPriceP.innerText = askPrice;
+    bidPriceP.innerText = bidPrice;
+    askPriceP.innerText = askPrice;
 
     // askPriceP.innerText = askPrice;
 
@@ -127,7 +129,7 @@ if (currentDay === 0 || currentDay === 6) {
     let socket = new WebSocket("wss://marketdata.tradermade.com/feedadv");
   
     socket.onopen = function (e) {
-      socket.send('{"userKey":"wsMuoUboU-NHSHFX0LwA", "symbol":"XAUUSD"}');
+      socket.send('{"userKey":"wsplkh1NFkrk1uLvhWrg", "symbol":"XAUUSD"}');
       
     };
   
@@ -359,4 +361,4 @@ setInterval(() => {
     highestDay.innerText = data.high.toFixed(2);
   });
 }, 60000);
-const historicalURL = `https://marketdata.tradermade.com/api/v1/historical?currency=XAUUSD&date=${currDate}&api_key=UdH2AVy1g_PfTObGqA9d`;
+const historicalURL = `https://marketdata.tradermade.com/api/v1/historical?currency=XAUUSD&date=${currDate}&api_key=CzyOm57xTxByAcyzwJ-1`;
