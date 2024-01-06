@@ -112,7 +112,7 @@ if (currentDay === 0 || currentDay === 6) {
       0.377
     ).toFixed(0);
     ttPriceTicker.innerText = (
-      ((price + 17) / 31.10347) *
+      ((price + 13) / 31.10347) *
       116.64 *
       0.377
     ).toFixed(0);
@@ -252,7 +252,7 @@ if (currentDay === 0 || currentDay === 6) {
           0.377
         ).toFixed(0);
         ttPriceTicker.innerText = (
-          ((price + 17) / 31.10347) *
+          ((price + 13) / 31.10347) *
           116.64 *
           0.377
         ).toFixed(0);
