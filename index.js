@@ -31,7 +31,7 @@ let ttPriceTicker = document.getElementById("ttPriceTicker");
 
 
 //old key = UdH2AVy1g_PfTObGqA9d
-const API_KEY_STATIC = "l0DK0VWakPsTM75PVDlT";
+const API_KEY_STATIC = "mQK2zB2lxayaitBVpJEC";
 
 const API_KEY_STREAMING = "wsMuoUboU-NHSHFX0LwA";
 
