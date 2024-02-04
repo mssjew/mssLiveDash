@@ -29,16 +29,23 @@ let hundredGramTicker = document.getElementById("hundredGramTicker");
 let ttPriceTicker = document.getElementById("ttPriceTicker");
 // let mainTT = document.getElementById("mainTT");
 
+
+//old key = UdH2AVy1g_PfTObGqA9d
+const API_KEY_STATIC = "l0DK0VWakPsTM75PVDlT";
+
+const API_KEY_STREAMING = "wsMuoUboU-NHSHFX0LwA";
+
+
 async function goldToday() {
   let resp = await axios.get(
-    `https://marketdata.tradermade.com/api/v1/historical?currency=XAUUSD&date=${currDate}&api_key=UdH2AVy1g_PfTObGqA9d`
+    `https://marketdata.tradermade.com/api/v1/historical?currency=XAUUSD&date=${currDate}&api_key=${API_KEY_STATIC}`
   );
   return resp.data.quotes[0];
 }
 
 async function goldClosed() {
   let resp = await axios.get(
-    `https://marketdata.tradermade.com/api/v1/live?currency=XAUUSD&api_key=UdH2AVy1g_PfTObGqA9d`
+    `https://marketdata.tradermade.com/api/v1/live?currency=XAUUSD&api_key=${API_KEY_STATIC}`
   );
   return resp.data.quotes[0];
 }
@@ -129,7 +136,8 @@ if (currentDay === 0 || currentDay === 6) {
     let socket = new WebSocket("wss://marketdata.tradermade.com/feedadv");
   
     socket.onopen = function (e) {
-      socket.send('{"userKey":"wsMuoUboU-NHSHFX0LwA", "symbol":"XAUUSD"}');
+      socket.send(`{"userKey":"${API_KEY_STREAMING}", "symbol":"XAUUSD"}`);
+    
       
     };
   
@@ -361,4 +369,3 @@ setInterval(() => {
     highestDay.innerText = data.high.toFixed(2);
   });
 }, 60000);
-const historicalURL = `https://marketdata.tradermade.com/api/v1/historical?currency=XAUUSD&date=${currDate}&api_key=CzyOm57xTxByAcyzwJ-1`;
