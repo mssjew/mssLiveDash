@@ -11,12 +11,9 @@ let oneGramTicker = document.getElementById("oneGramTicker");
 let twoHalfGramTicker = document.getElementById("twoHalfGramTicker");
 let fiveGramTicker = document.getElementById("fiveGramTicker");
 let tenGramTicker = document.getElementById("tenGramTicker");
-let oneTolaTicker = document.getElementById("oneTolaTicker");
 let twentyGramTicker = document.getElementById("twentyGramTicker");
-let twoTolaTicker = document.getElementById("twoTolaTicker");
 let oneOunceTicker = document.getElementById("oneOunceTicker");
 let fiftyGramTicker = document.getElementById("fiftyGramTicker");
-let fiveTolaTicker = document.getElementById("fiveTolaTicker");
 let hundredGramTicker = document.getElementById("hundredGramTicker");
 let ttPriceTicker = document.getElementById("ttPriceTicker");
 
@@ -25,12 +22,9 @@ let oneGramTickerUSD = document.getElementById("oneGramTickerUSD");
 let twoHalfGramTickerUSD = document.getElementById("twoHalfGramTickerUSD");
 let fiveGramTickerUSD = document.getElementById("fiveGramTickerUSD");
 let tenGramTickerUSD = document.getElementById("tenGramTickerUSD");
-let oneTolaTickerUSD = document.getElementById("oneTolaTickerUSD");
 let twentyGramTickerUSD = document.getElementById("twentyGramTickerUSD");
-let twoTolaTickerUSD = document.getElementById("twoTolaTickerUSD");
 let oneOunceTickerUSD = document.getElementById("oneOunceTickerUSD");
 let fiftyGramTickerUSD = document.getElementById("fiftyGramTickerUSD");
-let fiveTolaTickerUSD = document.getElementById("fiveTolaTickerUSD");
 let hundredGramTickerUSD = document.getElementById("hundredGramTickerUSD");
 let ttPriceTickerUSD = document.getElementById("ttPriceTickerUSD");
 
@@ -39,12 +33,9 @@ let oneGramTickerSAR = document.getElementById("oneGramTickerSAR");
 let twoHalfGramTickerSAR = document.getElementById("twoHalfGramTickerSAR");
 let fiveGramTickerSAR = document.getElementById("fiveGramTickerSAR");
 let tenGramTickerSAR = document.getElementById("tenGramTickerSAR");
-let oneTolaTickerSAR = document.getElementById("oneTolaTickerSAR");
 let twentyGramTickerSAR = document.getElementById("twentyGramTickerSAR");
-let twoTolaTickerSAR = document.getElementById("twoTolaTickerSAR");
 let oneOunceTickerSAR = document.getElementById("oneOunceTickerSAR");
 let fiftyGramTickerSAR = document.getElementById("fiftyGramTickerSAR");
-let fiveTolaTickerSAR = document.getElementById("fiveTolaTickerSAR");
 let hundredGramTickerSAR = document.getElementById("hundredGramTickerSAR");
 let ttPriceTickerSAR = document.getElementById("ttPriceTickerSAR");
 
@@ -91,100 +82,94 @@ function updatePrices(bhdPrice, element, elementUSD, elementSAR, identifier) {
 }
 
 async function goldClosed() {
-  let resp = await axios.get(
-      `https://marketdata.tradermade.com/api/v1/live?currency=XAUUSD&api_key=${API_KEY_STATIC}`
-  );
-  return resp.data.quotes[0];
+    let resp = await axios.get(
+        `https://marketdata.tradermade.com/api/v1/live?currency=XAUUSD&api_key=${API_KEY_STATIC}`
+    );
+    return resp.data.quotes[0];
 }
 
 let currentDay = new Date().getDay();
 
 if (currentDay === 0 || currentDay === 6) {
-  marketStatus.innerHTML = " (MARKET CLOSED) ";
+    marketStatus.innerHTML = " (MARKET CLOSED) ";
 
-  goldClosed().then((data) => {
-      let askPrice = data.ask;
-      askPriceP.innerText = askPrice;
+    goldClosed().then((data) => {
+        let askPrice = data.ask;
+        askPriceP.innerText = askPrice;
 
-      let price = askPrice;
+        let price = askPrice;
 
-      const calculations = [
-          { price: ((price + 700) / 31.10347) * 1 * 0.377, elements: [oneGramTicker, oneGramTickerUSD, oneGramTickerSAR], id: '1g' },
-          { price: ((price + 325) / 31.10347) * 2.5 * 0.377, elements: [twoHalfGramTicker, twoHalfGramTickerUSD, twoHalfGramTickerSAR], id: '2.5g' },
-          { price: ((price + 275) / 31.10347) * 5 * 0.377, elements: [fiveGramTicker, fiveGramTickerUSD, fiveGramTickerSAR], id: '5g' },
-          { price: ((price + 180) / 31.10347) * 10 * 0.377, elements: [tenGramTicker, tenGramTickerUSD, tenGramTickerSAR], id: '10g' },
-          { price: ((price + 165) / 31.10347) * 11.664 * 0.377, elements: [oneTolaTicker, oneTolaTickerUSD, oneTolaTickerSAR], id: '1t' },
-          { price: ((price + 125) / 31.10347) * 20 * 0.377, elements: [twentyGramTicker, twentyGramTickerUSD, twentyGramTickerSAR], id: '20g' },
-          { price: ((price + 140) / 31.10347) * 23.328 * 0.377, elements: [twoTolaTicker, twoTolaTickerUSD, twoTolaTickerSAR], id: '2t' },
-          { price: ((price + 82) / 31.10347) * 31.10347 * 0.377, elements: [oneOunceTicker, oneOunceTickerUSD, oneOunceTickerSAR], id: '1oz' },
-          { price: ((price + 77) / 31.10347) * 50 * 0.377, elements: [fiftyGramTicker, fiftyGramTickerUSD, fiftyGramTickerSAR], id: '50g' },
-          { price: ((price + 67) / 31.10347) * 58.32 * 0.377, elements: [fiveTolaTicker, fiveTolaTickerUSD, fiveTolaTickerSAR], id: '5t' },
-          { price: ((price + 41) / 31.10347) * 100 * 0.377, elements: [hundredGramTicker, hundredGramTickerUSD, hundredGramTickerSAR], id: '100g' },
-          { price: ((price + 13) / 31.10347) * 116.64 * 0.377, elements: [ttPriceTicker, ttPriceTickerUSD, ttPriceTickerSAR], id: 'tt' }
-      ];
+        const calculations = [
+            { price: ((price + 700) / 31.10347) * 1 * 0.377, elements: [oneGramTicker, oneGramTickerUSD, oneGramTickerSAR], id: '1g' },
+            { price: ((price + 325) / 31.10347) * 2.5 * 0.377, elements: [twoHalfGramTicker, twoHalfGramTickerUSD, twoHalfGramTickerSAR], id: '2.5g' },
+            { price: ((price + 275) / 31.10347) * 5 * 0.377, elements: [fiveGramTicker, fiveGramTickerUSD, fiveGramTickerSAR], id: '5g' },
+            { price: ((price + 180) / 31.10347) * 10 * 0.377, elements: [tenGramTicker, tenGramTickerUSD, tenGramTickerSAR], id: '10g' },
+            { price: ((price + 125) / 31.10347) * 20 * 0.377, elements: [twentyGramTicker, twentyGramTickerUSD, twentyGramTickerSAR], id: '20g' },
+            { price: ((price + 82) / 31.10347) * 31.10347 * 0.377, elements: [oneOunceTicker, oneOunceTickerUSD, oneOunceTickerSAR], id: '1oz' },
+            { price: ((price + 77) / 31.10347) * 50 * 0.377, elements: [fiftyGramTicker, fiftyGramTickerUSD, fiftyGramTickerSAR], id: '50g' },
+            { price: ((price + 41) / 31.10347) * 100 * 0.377, elements: [hundredGramTicker, hundredGramTickerUSD, hundredGramTickerSAR], id: '100g' },
+            { price: ((price + 13) / 31.10347) * 116.64 * 0.377, elements: [ttPriceTicker, ttPriceTickerUSD, ttPriceTickerSAR], id: 'tt' }
+        ];
 
-      calculations.forEach(calc => {
-          updatePrices(calc.price, ...calc.elements, calc.id);
-      });
-  });
+        calculations.forEach(calc => {
+            updatePrices(calc.price, ...calc.elements, calc.id);
+        });
+    });
 } else {
-  const connectWS = () => {
-      let askPriceHistory = [];
-      let socket = new WebSocket("wss://marketdata.tradermade.com/feedadv");
+    const connectWS = () => {
+        let askPriceHistory = [];
+        let socket = new WebSocket("wss://marketdata.tradermade.com/feedadv");
 
-      socket.onopen = function (e) {
-          socket.send(`{"userKey":"${API_KEY_STREAMING}", "symbol":"XAUUSD"}`);
-      };
+        socket.onopen = function (e) {
+            socket.send(`{"userKey":"${API_KEY_STREAMING}", "symbol":"XAUUSD"}`);
+        };
 
-      socket.onmessage = function incoming(data) {
-          let askPrice = data.data.split(",")[3];
-          askPriceFormatted = askPrice.substring(6, askPrice.length);
-          askPriceP.innerText = askPriceFormatted;
-          askPriceHistory.push(Number(askPriceFormatted));
+        socket.onmessage = function incoming(data) {
+            let askPrice = data.data.split(",")[3];
+            askPriceFormatted = askPrice.substring(6, askPrice.length);
+            askPriceP.innerText = askPriceFormatted;
+            askPriceHistory.push(Number(askPriceFormatted));
 
-          if (askPriceHistory.length > 1) {
-              if (askPriceHistory[askPriceHistory.length - 1] > askPriceHistory[askPriceHistory.length - 2]) {
-                  askPriceP.style.color = "green";
-              } else if (askPriceHistory[askPriceHistory.length - 1] < askPriceHistory[askPriceHistory.length - 2]) {
-                  askPriceP.style.color = "red";
-              }
-          }
+            if (askPriceHistory.length > 1) {
+                if (askPriceHistory[askPriceHistory.length - 1] > askPriceHistory[askPriceHistory.length - 2]) {
+                    askPriceP.style.color = "#00aa00";
+                } else if (askPriceHistory[askPriceHistory.length - 1] < askPriceHistory[askPriceHistory.length - 2]) {
+                    askPriceP.style.color = "#cc0000";
+                }
+            }
 
-          if (askPriceHistory.length > 3) {
-              askPriceHistory.shift();
-          }
+            if (askPriceHistory.length > 3) {
+                askPriceHistory.shift();
+            }
 
-          if (askPriceFormatted) {
-              let price = Number(askPriceFormatted);
+            if (askPriceFormatted) {
+                let price = Number(askPriceFormatted);
 
-              const calculations = [
-                  { price: ((price + 700) / 31.10347) * 1 * 0.377, elements: [oneGramTicker, oneGramTickerUSD, oneGramTickerSAR], id: '1g' },
-                  { price: ((price + 325) / 31.10347) * 2.5 * 0.377, elements: [twoHalfGramTicker, twoHalfGramTickerUSD, twoHalfGramTickerSAR], id: '2.5g' },
-                  { price: ((price + 275) / 31.10347) * 5 * 0.377, elements: [fiveGramTicker, fiveGramTickerUSD, fiveGramTickerSAR], id: '5g' },
-                  { price: ((price + 180) / 31.10347) * 10 * 0.377, elements: [tenGramTicker, tenGramTickerUSD, tenGramTickerSAR], id: '10g' },
-                  { price: ((price + 165) / 31.10347) * 11.664 * 0.377, elements: [oneTolaTicker, oneTolaTickerUSD, oneTolaTickerSAR], id: '1t' },
-                  { price: ((price + 125) / 31.10347) * 20 * 0.377, elements: [twentyGramTicker, twentyGramTickerUSD, twentyGramTickerSAR], id: '20g' },
-                  { price: ((price + 140) / 31.10347) * 23.328 * 0.377, elements: [twoTolaTicker, twoTolaTickerUSD, twoTolaTickerSAR], id: '2t' },
-                  { price: ((price + 82) / 31.10347) * 31.10347 * 0.377, elements: [oneOunceTicker, oneOunceTickerUSD, oneOunceTickerSAR], id: '1oz' },
-                  { price: ((price + 77) / 31.10347) * 50 * 0.377, elements: [fiftyGramTicker, fiftyGramTickerUSD, fiftyGramTickerSAR], id: '50g' },
-                  { price: ((price + 67) / 31.10347) * 58.32 * 0.377, elements: [fiveTolaTicker, fiveTolaTickerUSD, fiveTolaTickerSAR], id: '5t' },
-                  { price: ((price + 41) / 31.10347) * 100 * 0.377, elements: [hundredGramTicker, hundredGramTickerUSD, hundredGramTickerSAR], id: '100g' },
-                  { price: ((price + 13) / 31.10347) * 116.64 * 0.377, elements: [ttPriceTicker, ttPriceTickerUSD, ttPriceTickerSAR], id: 'tt' }
-              ];
+                const calculations = [
+                    { price: ((price + 700) / 31.10347) * 1 * 0.377, elements: [oneGramTicker, oneGramTickerUSD, oneGramTickerSAR], id: '1g' },
+                    { price: ((price + 325) / 31.10347) * 2.5 * 0.377, elements: [twoHalfGramTicker, twoHalfGramTickerUSD, twoHalfGramTickerSAR], id: '2.5g' },
+                    { price: ((price + 275) / 31.10347) * 5 * 0.377, elements: [fiveGramTicker, fiveGramTickerUSD, fiveGramTickerSAR], id: '5g' },
+                    { price: ((price + 180) / 31.10347) * 10 * 0.377, elements: [tenGramTicker, tenGramTickerUSD, tenGramTickerSAR], id: '10g' },
+                    { price: ((price + 125) / 31.10347) * 20 * 0.377, elements: [twentyGramTicker, twentyGramTickerUSD, twentyGramTickerSAR], id: '20g' },
+                    { price: ((price + 82) / 31.10347) * 31.10347 * 0.377, elements: [oneOunceTicker, oneOunceTickerUSD, oneOunceTickerSAR], id: '1oz' },
+                    { price: ((price + 77) / 31.10347) * 50 * 0.377, elements: [fiftyGramTicker, fiftyGramTickerUSD, fiftyGramTickerSAR], id: '50g' },
+                    { price: ((price + 41) / 31.10347) * 100 * 0.377, elements: [hundredGramTicker, hundredGramTickerUSD, hundredGramTickerSAR], id: '100g' },
+                    { price: ((price + 13) / 31.10347) * 116.64 * 0.377, elements: [ttPriceTicker, ttPriceTickerUSD, ttPriceTickerSAR], id: 'tt' }
+                ];
 
-              calculations.forEach(calc => {
-                  updatePrices(calc.price, ...calc.elements, calc.id);
-              });
-          }
-      };
+                calculations.forEach(calc => {
+                    updatePrices(calc.price, ...calc.elements, calc.id);
+                });
+            }
+        };
 
-      socket.onerror = function (error) {
-          alert(`[error] ${error.message}`);
-      };
-  };
+        socket.onerror = function (error) {
+            alert(`[error] ${error.message}`);
+        };
+    };
 
-  connectWS();
-  setInterval(connectWS, 120000);
+    connectWS();
+    setInterval(connectWS, 120000);
 }
 
 let todaysDate = new Date();
@@ -192,7 +177,7 @@ let todaysDateFormatted = todaysDate.toDateString();
 todaysDateP.innerText = todaysDateFormatted;
 
 setInterval(function () {
-  let currentTime = new Date();
-  let currentTimeFormatted = currentTime.toLocaleTimeString();
-  currentTimeP.innerText = currentTimeFormatted;
+    let currentTime = new Date();
+    let currentTimeFormatted = currentTime.toLocaleTimeString();
+    currentTimeP.innerText = currentTimeFormatted;
 }, 1000);
