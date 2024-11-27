@@ -12,188 +12,88 @@
       rel="stylesheet"
     />
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
-    <title>Document</title>
+    <title>MSS Gold</title>
   </head>
   <body>
     <div class="headerBar">
-    
-        
       <div class="logoSection"></div>
-
       <div class="mainTitle">
-        <h1>MSS Jewellers</h1>
-        <h2>Live Gold Bar Prices <span id="marketStatus"></span></h2>
+        <h1>MSS GOLD</h1>
       </div>
-
+      <div class="livePrice">
+        <p id="askPrice"></p>
+        <span id="marketStatus"></span>
+      </div>
       <div class="dateSection">
          <p id="todaysDate"></p>
          <p id="currentTime"></p>
-         </div> 
-<!-- 
-      <div class="dateSection">
-    <p id="todaysDate"></p>
-    <p id="currentTime"></p>
-    </div> -->
-
-    <div class="lowTop">
-      <h2>LOW: </h2>
-      <p id="lowestDay"></p>
-  </div>
-
-
-  <div class="highBottom">
-      <h2>HIGH: </h2>
-      <p id="highestDay"></p>
-  </div>
-
+      </div> 
     </div>
 
-    <div class="tickerSection">
-      <div class="bidTicker">
-       
-        <h2>BID PRICE</h2>
-        <br>
-        <p id="bidPrice"></p>
-      </div>
-
-      <div class="askTicker">
-         
-         <h2>ASK PRICE</h2>
-         <br>
-         <p id="askPrice"></p>
-       </div>
-
-<!-- 
-   <div class="askTicker">
-        <h2>ASK PRICE</h2>
-        <p id="askPrice"></p>
-      </div> -->
-
-<!--      
-      <div class="highestTicker">
-     
-      </div> -->
-    </div>
-
-    <br />
-
-
-    <!-- <div class="ttSection">
-        <p id="mainTT"></p>
-    </div> -->
-
-  
     <div class="barPriceSection">
-        <!-- //     let ttPrice = (((askPrice + 11) / 31.10347) * 116.64 * 0.377).toFixed(3);
-
-            //     let hundredGrams = (((askPrice + 48) / 31.10347) * 100 * 0.377).toFixed(3);
-          
-            //     let fiveTola = (((askPrice + 70) / 31.10347) * 58.32 * 0.377).toFixed(3);
-          
-            //     let fiftyGrams = (((askPrice + 68) / 31.10347) * 50 * 0.377).toFixed(3);
-          
-            //     let oneOunce = (((askPrice + 60) / 31.10347) * 31.10347 * 0.377).toFixed(3);
-          
-            //     let twoTola = (((askPrice + 105) / 31.10347) * 23.328 * 0.377).toFixed(3);
-          
-            //     let twentyGrams = (((askPrice + 100) / 31.10347) * 20 * 0.377).toFixed(3);
-          
-            //     let oneTola = (((askPrice + 145) / 31.10347) * 11.664 * 0.377).toFixed(3);
-          
-            //     let tenGrams = (((askPrice + 160) / 31.10347) * 10 * 0.377).toFixed(3);
-          
-            //     let fiveGrams = (((askPrice + 270) / 31.10347) * 5 * 0.377).toFixed(3);
-          
-            //     let twoandHalfGrams = (((askPrice + 325) / 31.10347) * 2.5 * 0.377).toFixed(
-            //       3
-            //     );
-          
-            //     let oneGram = (((askPrice + 700) / 31.10347) * 1 * 0.377).toFixed(3); -->
-        <!--             
-            <li>1 Gram: <span id="oneGramTicker"></span></li>
-            <li>2.5 Grams: <span id="twoHalfGramTicker"></span></li>
-            <li>5 Grams: <span id="fiveGramTicker"></span></li>
-            <li>10 Grams: <span id="tenGramTicker"></span></li>
-            <li>1 Tola: <span id="oneTolaTicker"></span></li>
-            <li>20 Grams: <span id="twentyGramTicker"></span></li> -->
-
-        
-
-            <table class="table2">
-                <tr>
-                   <td>TT Bar</td>
-                   <td>BD <span id="ttPriceTicker"></span></td>
-                </tr>
-                <tr>
-                    <td>100 Grams</td>
-                    <td>BD <span id="hundredGramTicker"></span></td>
-                 </tr>
-                 <tr>
-                    <td>5 Tola</td>
-                    <td>BD <span id="fiveTolaTicker"></span></td>
-                 </tr>
-                 <tr>
-                    <td>50 Grams</td>
-                    <td>BD <span id="fiftyGramTicker"></span></td>
-                 </tr>
-                 <tr>
-                    <td>1 Ounce</td>
-                    <td>BD <span id="oneOunceTicker"></span></td>
-                 </tr>
-                 <tr>
-                    <td>2 Tola</td>
-                    <td>BD <span id="twoTolaTicker"></span></td>
-                 </tr>
-              </table>
-
-              
-            <table class="table1">
-          
-           
-             
-                <tr>
-                   <td>20 Grams</td>
-                   <td>BD <span id="twentyGramTicker"></span></td>
-                </tr>
-                <tr>
-                    <td>1 Tola</td>
-                    <td>BD <span id="oneTolaTicker"></span></td>
-                 </tr>
-                 <tr>
-                    <td>10 Grams</td>
-                    <td>BD <span id="tenGramTicker"></span></td>
-                 </tr>
-                 <tr>
-                    <td>5 Grams</td>
-                    <td>BD <span id="fiveGramTicker"></span></td>
-                 </tr>
-                 <tr>
-                    <td>2.5 Grams</td>
-                    <td>BD <span id="twoHalfGramTicker"></span></td>
-                 </tr>
-                 <tr>
-                    <td>1 Gram</td>
-                    <td>BD <span id="oneGramTicker"></span></td>
-                 </tr>
-        
-               
-            
-            </table>
-
-
-
-
-
-
-
-    
-
-
-
-
+        <table class="priceTable">
+            <tr class="tableHeader">
+                <th>Weight</th>
+                <th>BHD</th>
+                <th>USD</th>
+                <th>SAR</th>
+            </tr>
+            <tr>
+                <td>1 Gram</td>
+                <td><span id="oneGram_bhd"></span></td>
+                <td><span id="oneGram_usd"></span></td>
+                <td><span id="oneGram_sar"></span></td>
+            </tr>
+            <tr>
+                <td>2.5 Grams</td>
+                <td><span id="twoHalfGram_bhd"></span></td>
+                <td><span id="twoHalfGram_usd"></span></td>
+                <td><span id="twoHalfGram_sar"></span></td>
+            </tr>
+            <tr>
+                <td>5 Grams</td>
+                <td><span id="fiveGram_bhd"></span></td>
+                <td><span id="fiveGram_usd"></span></td>
+                <td><span id="fiveGram_sar"></span></td>
+            </tr>
+            <tr>
+                <td>10 Grams</td>
+                <td><span id="tenGram_bhd"></span></td>
+                <td><span id="tenGram_usd"></span></td>
+                <td><span id="tenGram_sar"></span></td>
+            </tr>
+            <tr>
+                <td>20 Grams</td>
+                <td><span id="twentyGram_bhd"></span></td>
+                <td><span id="twentyGram_usd"></span></td>
+                <td><span id="twentyGram_sar"></span></td>
+            </tr>
+            <tr>
+                <td>1 Ounce</td>
+                <td><span id="oneOunce_bhd"></span></td>
+                <td><span id="oneOunce_usd"></span></td>
+                <td><span id="oneOunce_sar"></span></td>
+            </tr>
+            <tr>
+                <td>50 Grams</td>
+                <td><span id="fiftyGram_bhd"></span></td>
+                <td><span id="fiftyGram_usd"></span></td>
+                <td><span id="fiftyGram_sar"></span></td>
+            </tr>
+            <tr>
+                <td>100 Grams</td>
+                <td><span id="hundredGram_bhd"></span></td>
+                <td><span id="hundredGram_usd"></span></td>
+                <td><span id="hundredGram_sar"></span></td>
+            </tr>
+            <tr class="tt-bar">
+                <td>TT Bar</td>
+                <td><span id="ttPrice_bhd"></span></td>
+                <td><span id="ttPrice_usd"></span></td>
+                <td><span id="ttPrice_sar"></span></td>
+            </tr>
+        </table>
     </div>
-
     <script src="index.js"></script>
   </body>
 </html>
