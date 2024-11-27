@@ -5,7 +5,7 @@ let marketStatus = document.getElementById("marketStatus");
 
 // Price elements for all currencies
 const weights = ['oneGram', 'twoHalfGram', 'fiveGram', 'tenGram', 'twentyGram', 'oneOunce', 'fiftyGram', 'hundredGram', 'ttPrice'];
-const currencies = ['bhd', 'usd', 'sar'];
+const currencies = ['bhd', 'usd', 'sar', 'aed'];
 
 // Create object to store previous prices for comparison
 let previousPrices = {};
@@ -13,7 +13,8 @@ weights.forEach(weight => {
     previousPrices[weight] = {
         bhd: 0,
         usd: 0,
-        sar: 0
+        sar: 0,
+        aed: 0
     };
 });
 
@@ -48,36 +49,42 @@ function updatePriceColor(element, newPrice, oldPrice) {
 function calculatePrices(price) {
     // Calculate base BHD prices
     const bhd_prices = {
-        oneGram: (((price + 700) / 31.10347) * 1 * 0.377).toFixed(0),
-        twoHalfGram: (((price + 325) / 31.10347) * 2.5 * 0.377).toFixed(0),
-        fiveGram: (((price + 275) / 31.10347) * 5 * 0.377).toFixed(0),
-        tenGram: (((price + 180) / 31.10347) * 10 * 0.377).toFixed(0),
-        twentyGram: (((price + 125) / 31.10347) * 20 * 0.377).toFixed(0),
-        oneOunce: (((price + 82) / 31.10347) * 31.10347 * 0.377).toFixed(0),
-        fiftyGram: (((price + 77) / 31.10347) * 50 * 0.377).toFixed(0),
-        hundredGram: (((price + 41) / 31.10347) * 100 * 0.377).toFixed(0),
-        ttPrice: (((price + 13) / 31.10347) * 116.64 * 0.377).toFixed(0)
+        oneGram: (((price + 700) / 31.10347) * 1 * 0.377).toFixed(3),
+        twoHalfGram: (((price + 325) / 31.10347) * 2.5 * 0.377).toFixed(3),
+        fiveGram: (((price + 275) / 31.10347) * 5 * 0.377).toFixed(3),
+        tenGram: (((price + 180) / 31.10347) * 10 * 0.377).toFixed(3),
+        twentyGram: (((price + 125) / 31.10347) * 20 * 0.377).toFixed(3),
+        oneOunce: (((price + 82) / 31.10347) * 31.10347 * 0.377).toFixed(3),
+        fiftyGram: (((price + 77) / 31.10347) * 50 * 0.377).toFixed(3),
+        hundredGram: (((price + 41) / 31.10347) * 100 * 0.377).toFixed(3),
+        ttPrice: (((price + 13) / 31.10347) * 116.64 * 0.377).toFixed(3)
     };
 
     // Update all prices and colors
     weights.forEach(weight => {
-        // BHD
+        // BHD (3 decimals)
         const bhd_price = Number(bhd_prices[weight]);
-        priceElements[weight].bhd.innerText = formatNumber(bhd_price);
+        priceElements[weight].bhd.innerText = formatNumber(bhd_price, 3);
         updatePriceColor(priceElements[weight].bhd, bhd_price, previousPrices[weight].bhd);
         previousPrices[weight].bhd = bhd_price;
 
-        // USD (BHD / 0.375)
-        const usd_price = Number((bhd_price / 0.375).toFixed(0));
-        priceElements[weight].usd.innerText = formatNumber(usd_price);
+        // USD (2 decimals)
+        const usd_price = Number((bhd_price / 0.377).toFixed(2));
+        priceElements[weight].usd.innerText = formatNumber(usd_price, 2);
         updatePriceColor(priceElements[weight].usd, usd_price, previousPrices[weight].usd);
         previousPrices[weight].usd = usd_price;
 
-        // SAR (BHD * 10)
-        const sar_price = Number((bhd_price * 10).toFixed(0));
-        priceElements[weight].sar.innerText = formatNumber(sar_price);
+        // SAR (3 decimals)
+        const sar_price = Number((bhd_price * 10).toFixed(3));
+        priceElements[weight].sar.innerText = formatNumber(sar_price, 3);
         updatePriceColor(priceElements[weight].sar, sar_price, previousPrices[weight].sar);
         previousPrices[weight].sar = sar_price;
+
+        // AED (3 decimals) - Updated conversion rate
+        const aed_price = Number((bhd_price / 0.1028).toFixed(3));
+        priceElements[weight].aed.innerText = formatNumber(aed_price, 3);
+        updatePriceColor(priceElements[weight].aed, aed_price, previousPrices[weight].aed);
+        previousPrices[weight].aed = aed_price;
     });
 }
 
@@ -94,7 +101,8 @@ const connectWS = () => {
     socket.onmessage = function incoming(data) {
         let askPrice = data.data.split(",")[3];
         let askPriceFormatted = askPrice.substring(6, askPrice.length);
-        askPriceP.innerText = formatNumber(Number(askPriceFormatted).toFixed(2));
+        // Show 2 decimals for live gold price
+        askPriceP.innerText = formatNumber(Number(askPriceFormatted), 2);
         askPriceHistory.push(Number(askPriceFormatted));
 
         if (askPriceHistory.length > 1) {
@@ -135,7 +143,7 @@ if (currentDay === 0 || currentDay === 6) {
                 `https://marketdata.tradermade.com/api/v1/live?currency=XAUUSD&api_key=${API_KEY_STATIC}`
             );
             let price = resp.data.quotes[0].ask;
-            askPriceP.innerText = formatNumber(Number(price).toFixed(2));
+            askPriceP.innerText = formatNumber(Number(price), 2);
             calculatePrices(price);
         } catch (error) {
             console.error("Error fetching closed market price:", error);

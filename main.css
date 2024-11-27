@@ -173,7 +173,7 @@ body {
 
 .priceTable {
     width: 100%;
-    max-width: 1400px;
+    max-width: 1600px;
     border-collapse: collapse;
 }
 
@@ -199,13 +199,21 @@ body {
 
 .priceTable td:first-child {
     font-weight: 500;
-    width: 18%;
+    width: 15%;
 }
 
 .priceTable td:nth-child(2),
 .priceTable td:nth-child(3),
-.priceTable td:nth-child(4) {
-    width: 27%;
+.priceTable td:nth-child(4),
+.priceTable td:nth-child(5) {
+    width: 21.25%;
+}
+
+.priceTable th:nth-child(2),
+.priceTable th:nth-child(3),
+.priceTable th:nth-child(4),
+.priceTable th:nth-child(5) {
+    width: 21.25%;
 }
 
 .priceTable span {
@@ -237,11 +245,4 @@ body {
 
 .price-neutral {
     color: #333 !important;
-}
-
-/* Ensure consistent width for currency columns */
-.priceTable th:nth-child(2),
-.priceTable th:nth-child(3),
-.priceTable th:nth-child(4) {
-    width: 27%;
 }
