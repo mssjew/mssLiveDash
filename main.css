@@ -99,6 +99,7 @@ body {
     color: #333;
     display: flex;
     flex-direction: column;
+ 
 }
 
 * {
@@ -119,7 +120,7 @@ body {
 }
 
 .logoSection {
-    background-image: url("https://d1htfwxafklghc.cloudfront.net/logo.png");
+    background-image: url("https://d1htfwxafklghc.cloudfront.net/mssnewlogo.png");
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;

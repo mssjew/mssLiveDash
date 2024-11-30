@@ -27,7 +27,7 @@ weights.forEach(weight => {
     });
 });
 
-const API_KEY_STATIC = "mQK2zB2lxayaitBVpJEC";
+const API_KEY_STATIC = "K4Dlr-8Az2ZN9sxp72y1";
 const API_KEY_STREAMING = "wsMuoUboU-NHSHFX0LwA";
 
 // Format number with commas and decimals if needed
@@ -80,7 +80,7 @@ function calculatePrices(price) {
         updatePriceColor(priceElements[weight].sar, sar_price, previousPrices[weight].sar);
         previousPrices[weight].sar = sar_price;
 
-        // AED (3 decimals) - Updated conversion rate
+        // AED (3 decimals)
         const aed_price = Number((bhd_price / 0.1028).toFixed(3));
         priceElements[weight].aed.innerText = formatNumber(aed_price, 3);
         updatePriceColor(priceElements[weight].aed, aed_price, previousPrices[weight].aed);
@@ -89,6 +89,31 @@ function calculatePrices(price) {
 }
 
 let socket;
+let lastPrice = 0;
+
+async function getClosedMarketPrice() {
+    try {
+        const response = await fetch(
+            `https://marketdata.tradermade.com/api/v1/live?currency=XAUUSD&api_key=${API_KEY_STATIC}`
+        );
+        const data = await response.json();
+        const price = data.quotes[0].mid;
+        
+        askPriceP.innerText = formatNumber(Number(price), 2);
+        if (price > lastPrice) {
+            askPriceP.className = 'price-up';
+        } else if (price < lastPrice) {
+            askPriceP.className = 'price-down';
+        }
+        lastPrice = price;
+        
+        calculatePrices(price);
+        return true;
+    } catch (error) {
+        console.error("Error fetching closed market price:", error);
+        return false;
+    }
+}
 
 const connectWS = () => {
     let askPriceHistory = [];
@@ -101,7 +126,6 @@ const connectWS = () => {
     socket.onmessage = function incoming(data) {
         let askPrice = data.data.split(",")[3];
         let askPriceFormatted = askPrice.substring(6, askPrice.length);
-        // Show 2 decimals for live gold price
         askPriceP.innerText = formatNumber(Number(askPriceFormatted), 2);
         askPriceHistory.push(Number(askPriceFormatted));
 
@@ -133,31 +157,26 @@ const connectWS = () => {
     };
 };
 
-// Handle weekend market closure
-let currentDay = new Date().getDay();
-if (currentDay === 0 || currentDay === 6) {
-    marketStatus.innerHTML = "(MARKET CLOSED)";
-    async function getClosedPrice() {
-        try {
-            let resp = await axios.get(
-                `https://marketdata.tradermade.com/api/v1/live?currency=XAUUSD&api_key=${API_KEY_STATIC}`
-            );
-            let price = resp.data.quotes[0].ask;
-            askPriceP.innerText = formatNumber(Number(price), 2);
-            calculatePrices(price);
-        } catch (error) {
-            console.error("Error fetching closed market price:", error);
-            setTimeout(getClosedPrice, 5000);
-        }
+// Initialize the application
+async function initializeApp() {
+    const currentDay = new Date().getDay();
+    const isWeekend = currentDay === 0 || currentDay === 6;
+
+    if (isWeekend) {
+        // Initial fetch for closed market
+        await getClosedMarketPrice();
+        // Set up polling for closed market updates (every 5 minutes)
+        setInterval(getClosedMarketPrice, 300000);
+    } else {
+        marketStatus.innerHTML = "";
+        connectWS();
+        // Check WebSocket connection every 2 minutes
+        setInterval(() => {
+            if (!socket || socket.readyState !== WebSocket.OPEN) {
+                connectWS();
+            }
+        }, 120000);
     }
-    getClosedPrice();
-} else {
-    connectWS();
-    setInterval(() => {
-        if (!socket || socket.readyState !== WebSocket.OPEN) {
-            connectWS();
-        }
-    }, 120000);
 }
 
 // Update date and time
@@ -180,5 +199,7 @@ function updateDateTime() {
     currentTimeP.innerText = now.toLocaleTimeString('en-US', timeOptions);
 }
 
+// Start the application
 updateDateTime();
 setInterval(updateDateTime, 1000);
+initializeApp();
