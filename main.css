@@ -99,7 +99,6 @@ body {
     color: #333;
     display: flex;
     flex-direction: column;
- 
 }
 
 * {
@@ -120,7 +119,7 @@ body {
 }
 
 .logoSection {
-    background-image: url("https://d1htfwxafklghc.cloudfront.net/mssnewlogo.png");
+    background-image: url("https://d1htfwxafklghc.cloudfront.net/logo.png");
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
@@ -246,4 +245,25 @@ body {
 
 .price-neutral {
     color: #333 !important;
+}
+
+/* Add these to your existing CSS */
+.priceTable th.bhd-column {
+    background-color: #8B0000; /* Bahrain flag dark red */
+    color: white;
+}
+
+.priceTable th.usd-column {
+    background-color: #002868; /* USA flag navy blue */
+    color: white;
+}
+
+.priceTable th.sar-column {
+    background-color: #006B3E; /* Saudi flag green */
+    color: white;
+}
+
+.priceTable th.aed-column {
+    background-color: darkgoldenrod; /* UAE flag green */
+    color: white;
 }
