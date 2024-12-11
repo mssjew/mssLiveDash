@@ -168,7 +168,9 @@ async function initializeApp() {
         // Set up polling for closed market updates (every 5 minutes)
         setInterval(getClosedMarketPrice, 300000);
     } else {
-        marketStatus.innerHTML = "";
+        if (marketStatus) {  // Check if element exists before updating
+            marketStatus.innerHTML = "";
+        }
         connectWS();
         // Check WebSocket connection every 2 minutes
         setInterval(() => {
