@@ -97,17 +97,21 @@ async function getClosedMarketPrice() {
             `https://marketdata.tradermade.com/api/v1/live?currency=XAUUSD&api_key=${API_KEY_STATIC}`
         );
         const data = await response.json();
-        const price = data.quotes[0].mid;
+        const originalPrice = data.quotes[0].mid;
         
-        askPriceP.innerText = formatNumber(Number(price), 2);
-        if (price > lastPrice) {
+        // Subtract 20 dollars from the price
+        const adjustedPrice = originalPrice - 20;
+        
+        askPriceP.innerText = formatNumber(Number(adjustedPrice), 2);
+        if (adjustedPrice > lastPrice) {
             askPriceP.className = 'price-up';
-        } else if (price < lastPrice) {
+        } else if (adjustedPrice < lastPrice) {
             askPriceP.className = 'price-down';
         }
-        lastPrice = price;
+        lastPrice = adjustedPrice;
         
-        calculatePrices(price);
+        // Use the adjusted price for calculations
+        calculatePrices(adjustedPrice);
         return true;
     } catch (error) {
         console.error("Error fetching closed market price:", error);
