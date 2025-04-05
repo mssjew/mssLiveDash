@@ -100,7 +100,7 @@ async function getClosedMarketPrice() {
         const originalPrice = data.quotes[0].mid;
         
         // Subtract 20 dollars from the price
-        const adjustedPrice = originalPrice - 20;
+        const adjustedPrice = originalPrice;
         
         askPriceP.innerText = formatNumber(Number(adjustedPrice), 2);
         if (adjustedPrice > lastPrice) {
