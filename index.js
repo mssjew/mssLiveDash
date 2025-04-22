@@ -27,8 +27,8 @@ weights.forEach(weight => {
     });
 });
 
-const API_KEY_STATIC = "K4Dlr-8Az2ZN9sxp72y1";
-const API_KEY_STREAMING = "wsMuoUboU-NHSHFX0LwA";
+const API_KEY_STATIC = "gUkkarv9QS3rDdC4nbNk";
+const API_KEY_STREAMING = "wsfxBLFZo-Q15DPHWLLA";
 
 // Format number with commas and decimals if needed
 function formatNumber(num, decimals = 0) {
