@@ -92,11 +92,11 @@ html {
 
 body {
     font-family: 'Urbanist', sans-serif;
-    background-color: white;
+    background: #ffffff;
     height: 100vh;
     width: 100vw;
     overflow: hidden;
-    color: #333;
+    color: #1a1a1a;
     display: flex;
     flex-direction: column;
 }
@@ -108,162 +108,451 @@ body {
     max-width: 100%;
 }
 
+/* Header Styling */
 .headerBar {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 1rem;
+    height: 20vh;
+    background: #f8f8f8;
+    border-bottom: 3px solid #d47800;
+    box-shadow: 0 4px 20px rgba(212, 120, 0, 0.2);
+    position: relative;
+}
+
+.topRow {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.5rem 4rem;
-    height: 8vh;
-    background-color: #f9f9f9;
-    border-bottom: 1px solid #e0e0e0;
+    width: 100%;
+    padding: 0 1rem;
+    margin-bottom: 1rem;
 }
 
 .logoSection {
-    background-image: url("https://d1htfwxafklghc.cloudfront.net/logo.png");
+    background-image: url("https://d1htfwxafklghc.cloudfront.net/mssGoldenLogo2.webp");
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
-    height: 7vh;
-    width: 14vh;
+    height: 5vh;
+    width: 10vh;
+    flex-shrink: 0;
+}
+
+.titleGroup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 
 .mainTitle {
-    display: flex;
-    align-items: center;
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: #d47800;
+    letter-spacing: 3px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    margin: 0;
 }
 
-.mainTitle h1, #askPrice {
-    font-size: 4.5rem;
-    font-weight: bold;
-    color: #333;
+.livePricing {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #d47800;
+    letter-spacing: 1px;
+    margin-top: 0.2rem;
 }
 
-.livePrice {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-width: 25rem;
-}
-
-#marketStatus {
-    font-size: 1.8rem;
-    color: #333;
-}
-
-.dateSection {
+.dateTimeGroup {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    min-width: 25rem;
+    gap: 0.2rem;
 }
 
 #todaysDate, #currentTime {
-    font-size: 2rem;
-    font-weight: 600;
-    color: #333;
-    line-height: 1.2;
-}
-
-.barPriceSection {
-    height: 92vh;
-    display: flex;
-    justify-content: center;
-    padding: 0.3rem 2rem;
-}
-
-.priceTable {
-    width: 100%;
-    max-width: 1600px;
-    border-collapse: collapse;
-}
-
-.priceTable tr {
-    font-size: 3rem;
-    height: calc(92vh / 10);
-    border-bottom: 1px solid #e0e0e0;
-}
-
-.priceTable th {
-    font-weight: bold;
-    padding: 0.2rem 1rem;
-    text-align: left;
-    color: #333;
-    background-color: #f5f5f5;
-}
-
-.priceTable td {
-    padding: 0.2rem 1rem;
-    text-align: left;
-    color: #333;
-}
-
-.priceTable td:first-child {
+    font-size: 1.2rem;
     font-weight: 500;
-    width: 15%;
+    color: #666666;
+    text-shadow: none;
 }
 
-.priceTable td:nth-child(2),
-.priceTable td:nth-child(3),
-.priceTable td:nth-child(4),
-.priceTable td:nth-child(5) {
-    width: 21.25%;
+.rateRow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    flex: 1;
+    width: 100%;
 }
 
-.priceTable th:nth-child(2),
-.priceTable th:nth-child(3),
-.priceTable th:nth-child(4),
-.priceTable th:nth-child(5) {
-    width: 21.25%;
+.rateLabel {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #333333;
+    text-shadow: none;
 }
 
-.priceTable span {
-    font-weight: bold;
-    color: #333;
+#askPrice {
+    font-size: 9rem;
+    font-weight: 900;
+    color: #d47800;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    letter-spacing: 2px;
 }
 
-.tableHeader th {
-    color: #333;
-    font-size: 3.2rem;
+/* Menu Section */
+.priceMenu {
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    background: #ffffff;
 }
 
-.tt-bar {
-    background-color: #f8f8f8;
+.menuItem {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 3rem;
+    border-bottom: 1px solid #e0e0e0;
+    transition: all 0.2s ease;
+    position: relative;
 }
 
-.tt-bar td {
-    font-weight: bold;
+.menuItem:hover {
+    background: #f5f5f5;
+    border-left: 5px solid #d47800;
+    padding-left: 2.5rem;
 }
 
-/* Price change colors */
-.price-up {
-    color: #2E7D32 !important; /* Dark green */
+.menuItem:last-child {
+    border-bottom: none;
 }
 
-.price-down {
-    color: #C62828 !important; /* Dark red */
+.itemName {
+    font-size: 4.5rem;
+    font-weight: 600;
+    color: #333333;
+    letter-spacing: 1px;
+    text-shadow: none;
+    flex: 0 0 45%;
 }
 
-.price-neutral {
-    color: #333 !important;
+.itemPrice {
+    font-size: 5.5rem;
+    font-weight: 800;
+    color: #d47800;
+    letter-spacing: 1px;
+    text-align: right;
+    flex: 0 0 50%;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
-/* Add these to your existing CSS */
-.priceTable th.bhd-column {
-    background-color: #8B0000; /* Bahrain flag dark red */
-    color: white;
+/* Special Item (TT Bar) */
+.menuItem.special {
+    background: linear-gradient(90deg, rgba(255, 193, 7, 0.05) 0%, rgba(255, 193, 7, 0.1) 50%, rgba(255, 193, 7, 0.05) 100%);
+    border-top: 3px solid #f4a000;
+    border-bottom: 3px solid #f4a000;
+    box-shadow: 0 0 15px rgba(244, 160, 0, 0.2);
 }
 
-.priceTable th.usd-column {
-    background-color: #002868; /* USA flag navy blue */
-    color: white;
+.menuItem.special .itemName {
+    font-weight: 800;
+    font-size: 4.8rem;
+    color: #f4a000;
 }
 
-.priceTable th.sar-column {
-    background-color: #006B3E; /* Saudi flag green */
-    color: white;
+.menuItem.special .itemPrice {
+    font-weight: 900;
+    font-size: 6rem;
+    color: #f4a000;
 }
 
-.priceTable th.aed-column {
-    background-color: darkgoldenrod; /* UAE flag green */
-    color: white;
+/* Price change colors - solid colors only */
+.itemPrice.price-up {
+    color: #27ae60 !important;
+    animation: priceUp 0.5s ease;
+}
+
+.itemPrice.price-down {
+    color: #e74c3c !important;
+    animation: priceDown 0.5s ease;
+}
+
+.itemPrice.price-neutral {
+    color: #d47800 !important;
+}
+
+.menuItem.special .itemPrice.price-neutral {
+    color: #f4a000 !important;
+}
+
+/* Error state for prices */
+.price-error {
+    color: #666666 !important;
+    font-style: italic;
+}
+
+/* Footer Section */
+.footer-section {
+    height: 10vh;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 2rem;
+    background: #f8f8f8;
+    border-top: 1px solid #e0e0e0;
+    gap: 1.5rem;
+}
+
+.benefit-text {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #d47800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* Benefit image positioning */
+.benefit-image {
+    height: 80%;
+    width: auto;
+    opacity: 0.9;
+}
+
+@keyframes priceUp {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+    100% { transform: scale(1); }
+}
+
+@keyframes priceDown {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.97); }
+    100% { transform: scale(1); }
+}
+
+/* Currency indicator removed */
+
+/* Responsive adjustments for portrait orientation */
+@media (max-height: 1200px) {
+    .headerBar {
+        height: 18vh;
+        padding: 0.8rem 0.8rem;
+    }
+    
+    .priceMenu {
+        height: 72vh;
+    }
+    
+    .footer-section {
+        height: 10vh;
+    }
+    
+    .benefit-text {
+        font-size: 2rem;
+    }
+    
+    .logoSection {
+        height: 4vh;
+        width: 8vh;
+    }
+    
+    .mainTitle {
+        font-size: 3rem;
+    }
+    
+    .livePricing {
+        font-size: 1.2rem;
+    }
+    
+    #askPrice {
+        font-size: 7.5rem;
+    }
+    
+    .rateLabel {
+        font-size: 2.2rem;
+    }
+    
+    #todaysDate, #currentTime {
+        font-size: 1.1rem;
+    }
+    
+    .itemName {
+        font-size: 4rem;
+    }
+    
+    .itemPrice {
+        font-size: 5rem;
+    }
+    
+    .menuItem.special .itemName {
+        font-size: 4.3rem;
+    }
+    
+    .menuItem.special .itemPrice {
+        font-size: 5.5rem;
+    }
+}
+
+@media (max-height: 900px) {
+    .headerBar {
+        height: 16vh;
+        padding: 0.6rem 0.6rem;
+    }
+    
+    .priceMenu {
+        height: 74vh;
+    }
+    
+    .footer-section {
+        height: 10vh;
+    }
+    
+    .benefit-text {
+        font-size: 2rem;
+    }
+    
+    .logoSection {
+        height: 3.5vh;
+        width: 7vh;
+    }
+    
+    .topRow {
+        margin-bottom: 0.5rem;
+    }
+    
+    .mainTitle {
+        font-size: 2.5rem;
+        letter-spacing: 2px;
+    }
+    
+    .livePricing {
+        font-size: 1rem;
+    }
+    
+    #askPrice {
+        font-size: 6rem;
+    }
+    
+    .rateLabel {
+        font-size: 1.8rem;
+    }
+    
+    #todaysDate, #currentTime {
+        font-size: 1rem;
+    }
+    
+    .itemName {
+        font-size: 3.2rem;
+    }
+    
+    .itemPrice {
+        font-size: 4rem;
+    }
+    
+    .menuItem {
+        padding: 0 2.5rem;
+    }
+    
+    .menuItem.special .itemName {
+        font-size: 3.5rem;
+    }
+    
+    .menuItem.special .itemPrice {
+        font-size: 4.5rem;
+    }
+}
+
+@media (max-height: 768px) {
+    .headerBar {
+        height: 15vh;
+        padding: 0.5rem 0.5rem;
+    }
+    
+    .priceMenu {
+        height: 77vh;
+    }
+    
+    .footer-section {
+        height: 8vh;
+    }
+    
+    .benefit-text {
+        font-size: 1.6rem;
+    }
+    
+    .logoSection {
+        height: 3vh;
+        width: 6vh;
+    }
+    
+    .topRow {
+        margin-bottom: 0.3rem;
+    }
+    
+    .mainTitle {
+        font-size: 2rem;
+        letter-spacing: 1px;
+    }
+    
+    .livePricing {
+        font-size: 0.9rem;
+    }
+    
+    #askPrice {
+        font-size: 4.5rem;
+    }
+    
+    .rateLabel {
+        font-size: 1.5rem;
+    }
+    
+    #todaysDate, #currentTime {
+        font-size: 0.9rem;
+    }
+    
+    .itemName {
+        font-size: 2.5rem;
+    }
+    
+    .itemPrice {
+        font-size: 3rem;
+    }
+    
+    .menuItem {
+        padding: 0 2rem;
+    }
+    
+    .menuItem.special .itemName {
+        font-size: 2.8rem;
+    }
+    
+    .menuItem.special .itemPrice {
+        font-size: 3.5rem;
+    }
+}
+
+/* Subtle accent lines */
+.menuItem::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 60%;
+    background: linear-gradient(180deg, transparent 0%, #d47800 50%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.menuItem:hover::after {
+    opacity: 1;
+}
+
+.menuItem.special::after {
+    background: linear-gradient(180deg, transparent 0%, #f4a000 50%, transparent 100%);
 }

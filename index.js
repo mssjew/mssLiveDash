@@ -3,32 +3,27 @@ let todaysDateP = document.getElementById("todaysDate");
 let currentTimeP = document.getElementById("currentTime");
 let marketStatus = document.getElementById("marketStatus");
 
-// Price elements for all currencies
+// Price elements for BHD only
 const weights = ['oneGram', 'twoHalfGram', 'fiveGram', 'tenGram', 'twentyGram', 'oneOunce', 'fiftyGram', 'hundredGram', 'ttPrice'];
-const currencies = ['bhd', 'usd', 'sar', 'aed'];
 
 // Create object to store previous prices for comparison
 let previousPrices = {};
 weights.forEach(weight => {
-    previousPrices[weight] = {
-        bhd: 0,
-        usd: 0,
-        sar: 0,
-        aed: 0
-    };
+    previousPrices[weight] = 0;
 });
 
 // Create object to store all price elements
 let priceElements = {};
 weights.forEach(weight => {
-    priceElements[weight] = {};
-    currencies.forEach(currency => {
-        priceElements[weight][currency] = document.getElementById(`${weight}_${currency}`);
-    });
+    priceElements[weight] = document.getElementById(`${weight}_bhd`);
+    // Add initial class
+    if (priceElements[weight]) {
+        priceElements[weight].classList.add('itemPrice');
+    }
 });
 
 const API_KEY_STATIC = "fz7uld3FsJ8nMBcbpn1D";
-const API_KEY_STREAMING = "ws1ScnRP3FLR8eyrSKlw";
+const API_KEY_STREAMING = "wsQ4Mke4Fhx8lePQI1pQ";
 
 // Format number with commas and decimals if needed
 function formatNumber(num, decimals = 0) {
@@ -37,12 +32,15 @@ function formatNumber(num, decimals = 0) {
 }
 
 function updatePriceColor(element, newPrice, oldPrice) {
+    element.classList.remove('price-up', 'price-down', 'price-neutral');
     if (oldPrice === 0) {
-        element.className = 'price-neutral';
+        element.classList.add('price-neutral');
     } else if (newPrice > oldPrice) {
-        element.className = 'price-up';
+        element.classList.add('price-up');
     } else if (newPrice < oldPrice) {
-        element.className = 'price-down';
+        element.classList.add('price-down');
+    } else {
+        element.classList.add('price-neutral');
     }
 }
 
@@ -60,31 +58,12 @@ function calculatePrices(price) {
         ttPrice: (((price + 13) / 31.10347) * 116.64 * 0.377).toFixed(3)
     };
 
-    // Update all prices and colors
+    // Update BHD prices and colors
     weights.forEach(weight => {
-        // BHD (3 decimals)
         const bhd_price = Number(bhd_prices[weight]);
-        priceElements[weight].bhd.innerText = formatNumber(bhd_price, 3);
-        updatePriceColor(priceElements[weight].bhd, bhd_price, previousPrices[weight].bhd);
-        previousPrices[weight].bhd = bhd_price;
-
-        // USD (2 decimals)
-        const usd_price = Number((bhd_price / 0.377).toFixed(2));
-        priceElements[weight].usd.innerText = formatNumber(usd_price, 2);
-        updatePriceColor(priceElements[weight].usd, usd_price, previousPrices[weight].usd);
-        previousPrices[weight].usd = usd_price;
-
-        // SAR (3 decimals)
-        const sar_price = Number((bhd_price * 10).toFixed(3));
-        priceElements[weight].sar.innerText = formatNumber(sar_price, 3);
-        updatePriceColor(priceElements[weight].sar, sar_price, previousPrices[weight].sar);
-        previousPrices[weight].sar = sar_price;
-
-        // AED (3 decimals)
-        const aed_price = Number((bhd_price / 0.1028).toFixed(3));
-        priceElements[weight].aed.innerText = formatNumber(aed_price, 3);
-        updatePriceColor(priceElements[weight].aed, aed_price, previousPrices[weight].aed);
-        previousPrices[weight].aed = aed_price;
+        priceElements[weight].innerText = formatNumber(bhd_price, 3);
+        updatePriceColor(priceElements[weight], bhd_price, previousPrices[weight]);
+        previousPrices[weight] = bhd_price;
     });
 }
 
@@ -96,7 +75,26 @@ async function getClosedMarketPrice() {
         const response = await fetch(
             `https://marketdata.tradermade.com/api/v1/live?currency=XAUUSD&api_key=${API_KEY_STATIC}`
         );
+        
+        // Check if response is OK
+        if (!response.ok) {
+            throw new Error(`API Error: ${response.status} ${response.statusText}`);
+        }
+        
+        // Check content type
+        const contentType = response.headers.get("content-type");
+        if (!contentType || !contentType.includes("application/json")) {
+            const text = await response.text();
+            throw new Error(`Expected JSON but received: ${text.substring(0, 100)}...`);
+        }
+        
         const data = await response.json();
+        
+        // Validate data structure
+        if (!data.quotes || !data.quotes[0] || !data.quotes[0].mid) {
+            throw new Error("Invalid data structure from API");
+        }
+        
         const originalPrice = data.quotes[0].mid;
         
         // Subtract 20 dollars from the price
@@ -114,7 +112,22 @@ async function getClosedMarketPrice() {
         calculatePrices(adjustedPrice);
         return true;
     } catch (error) {
-        console.error("Error fetching closed market price:", error);
+        console.error("Error fetching closed market price:", error.message);
+        
+        // Display error message to user
+        if (askPriceP) {
+            askPriceP.innerText = "Service Unavailable";
+            askPriceP.className = 'price-error';
+        }
+        
+        // Set all prices to show unavailable
+        weights.forEach(weight => {
+            if (priceElements[weight]) {
+                priceElements[weight].innerText = "---";
+                priceElements[weight].classList.add('price-error');
+            }
+        });
+        
         return false;
     }
 }

@@ -17,92 +17,64 @@
   </head>
   <body>
     <div class="headerBar">
-      <div class="logoSection"></div>
-      <div class="mainTitle">
-        <h1>MSS GOLD</h1>
+      <div class="topRow">
+        <div class="logoSection"></div>
+        <div class="titleGroup">
+          <h1 class="mainTitle">MSS GOLD</h1>
+          <div class="livePricing">LIVE PRICING</div>
+        </div>
+        <div class="dateTimeGroup">
+          <div id="todaysDate"></div>
+          <div id="currentTime"></div>
+        </div>
       </div>
-      <div class="livePrice">
-        <p id="askPrice"></p>
+      <div class="rateRow">
+        <div class="rateLabel">Live XAUUSD</div>
+        <div id="askPrice"></div>
       </div>
-      <div class="dateSection">
-         <p id="todaysDate"></p>
-         <p id="currentTime"></p>
-      </div> 
     </div>
 
-    <div class="barPriceSection">
-        <table class="priceTable">
-            <tr class="tableHeader">
-                <th>Weight</th>
-                <th class="bhd-column">BHD 🇧🇭</th>
-<th class="usd-column">USD 🇺🇸</th>
-<th class="sar-column">SAR 🇸🇦</th>
-<th class="aed-column">AED 🇦🇪</th>
-            </tr>
-            <tr>
-                <td>1 Gram</td>
-                <td><span id="oneGram_bhd"></span></td>
-                <td><span id="oneGram_usd"></span></td>
-                <td><span id="oneGram_sar"></span></td>
-                <td><span id="oneGram_aed"></span></td>
-            </tr>
-            <tr>
-                <td>2.5 Grams</td>
-                <td><span id="twoHalfGram_bhd"></span></td>
-                <td><span id="twoHalfGram_usd"></span></td>
-                <td><span id="twoHalfGram_sar"></span></td>
-                <td><span id="twoHalfGram_aed"></span></td>
-            </tr>
-            <tr>
-                <td>5 Grams</td>
-                <td><span id="fiveGram_bhd"></span></td>
-                <td><span id="fiveGram_usd"></span></td>
-                <td><span id="fiveGram_sar"></span></td>
-                <td><span id="fiveGram_aed"></span></td>
-            </tr>
-            <tr>
-                <td>10 Grams</td>
-                <td><span id="tenGram_bhd"></span></td>
-                <td><span id="tenGram_usd"></span></td>
-                <td><span id="tenGram_sar"></span></td>
-                <td><span id="tenGram_aed"></span></td>
-            </tr>
-            <tr>
-                <td>20 Grams</td>
-                <td><span id="twentyGram_bhd"></span></td>
-                <td><span id="twentyGram_usd"></span></td>
-                <td><span id="twentyGram_sar"></span></td>
-                <td><span id="twentyGram_aed"></span></td>
-            </tr>
-            <tr>
-                <td>1 Ounce</td>
-                <td><span id="oneOunce_bhd"></span></td>
-                <td><span id="oneOunce_usd"></span></td>
-                <td><span id="oneOunce_sar"></span></td>
-                <td><span id="oneOunce_aed"></span></td>
-            </tr>
-            <tr>
-                <td>50 Grams</td>
-                <td><span id="fiftyGram_bhd"></span></td>
-                <td><span id="fiftyGram_usd"></span></td>
-                <td><span id="fiftyGram_sar"></span></td>
-                <td><span id="fiftyGram_aed"></span></td>
-            </tr>
-            <tr>
-                <td>100 Grams</td>
-                <td><span id="hundredGram_bhd"></span></td>
-                <td><span id="hundredGram_usd"></span></td>
-                <td><span id="hundredGram_sar"></span></td>
-                <td><span id="hundredGram_aed"></span></td>
-            </tr>
-            <tr class="tt-bar">
-                <td>TT Bar</td>
-                <td><span id="ttPrice_bhd"></span></td>
-                <td><span id="ttPrice_usd"></span></td>
-                <td><span id="ttPrice_sar"></span></td>
-                <td><span id="ttPrice_aed"></span></td>
-            </tr>
-        </table>
+    <div class="priceMenu">
+        <div class="menuItem">
+            <span class="itemName">1 Gram</span>
+            <span class="itemPrice" id="oneGram_bhd"></span>
+        </div>
+        <div class="menuItem">
+            <span class="itemName">2.5 Grams</span>
+            <span class="itemPrice" id="twoHalfGram_bhd"></span>
+        </div>
+        <div class="menuItem">
+            <span class="itemName">5 Grams</span>
+            <span class="itemPrice" id="fiveGram_bhd"></span>
+        </div>
+        <div class="menuItem">
+            <span class="itemName">10 Grams</span>
+            <span class="itemPrice" id="tenGram_bhd"></span>
+        </div>
+        <div class="menuItem">
+            <span class="itemName">20 Grams</span>
+            <span class="itemPrice" id="twentyGram_bhd"></span>
+        </div>
+        <div class="menuItem">
+            <span class="itemName">1 Ounce</span>
+            <span class="itemPrice" id="oneOunce_bhd"></span>
+        </div>
+        <div class="menuItem">
+            <span class="itemName">50 Grams</span>
+            <span class="itemPrice" id="fiftyGram_bhd"></span>
+        </div>
+        <div class="menuItem">
+            <span class="itemName">100 Grams</span>
+            <span class="itemPrice" id="hundredGram_bhd"></span>
+        </div>
+        <div class="menuItem special">
+            <span class="itemName">TT Bar</span>
+            <span class="itemPrice" id="ttPrice_bhd"></span>
+        </div>
+    </div>
+    <div class="footer-section">
+        <div class="benefit-text">MSS BENEFIT PAY SCAN →</div>
+        <img src="images/benefit.png" alt="Benefit" class="benefit-image">
     </div>
     <script src="index.js"></script>
   </body>
